@@ -1,7 +1,8 @@
-import Image from 'next/image'
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
 import Reveal from './Reveal'
 import { projects } from '../data/projects'
+
+const colors = ['#ef4444','#f97316','#f59e0b','#10b981','#06b6d4','#3b82f6','#8b5cf6']
 
 export default function Projects() {
   return (
@@ -15,7 +16,7 @@ export default function Projects() {
           {projects.map((p, idx) => (
             <article key={p.title} role="article" aria-labelledby={`proj-${idx}`} className="bg-neutral-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow transform hover:-translate-y-1 hover:scale-[1.01]">
               <div className="relative h-44">
-                <Image src={p.image || '/placeholder/project.png'} alt={p.title} fill style={{objectFit:'cover'}} />
+                <div role="img" aria-label={`Placeholder image for ${p.title}`} className="w-full h-full absolute inset-0" style={{backgroundColor: colors[idx % colors.length]}} />
               </div>
               <div className="p-4">
                 <h3 id={`proj-${idx}`} className="text-lg font-semibold text-white">{p.title}</h3>

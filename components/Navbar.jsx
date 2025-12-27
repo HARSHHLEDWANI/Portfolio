@@ -36,9 +36,7 @@ export default function Navbar() {
   return (
     <header className={`sticky top-0 z-50 transition-shadow ${scrolled ? 'shadow-lg bg-neutral-900/80 backdrop-blur-sm' : 'bg-transparent'}`}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="#home">
-          <a className="font-bold text-xl text-white">Harsh Ledwani</a>
-        </Link>
+        <Link href="#home" className="font-bold text-xl text-white">Harsh Ledwani</Link>
 
         <nav role="navigation" aria-label="Main navigation" className="hidden md:flex gap-6 items-center text-slate-200">
           <a href="#about" className={`hover:text-white ${active==='about'?'text-primary font-semibold':'text-slate-200'}`} aria-current={active==='about'? 'page' : undefined}>About</a>

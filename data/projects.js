@@ -1,50 +1,34 @@
 export const projects = [
   {
-    title: 'Project Alpha',
-    desc: 'A modern web app that demonstrates performance optimization and accessibility-first design. Implemented responsive UI, SSR, and CI/CD.',
-    tech: ['Next.js', 'Tailwind', 'Node.js'],
+    title: 'ReplicaSync — Offline-First Sync Engine',
+    desc: 'Designing and developing an offline-first notes application with an operation-based synchronization engine that queues create/update/delete operations in IndexedDB and syncs to a PostgreSQL backend. Features field-level merge with deterministic Last-Write-Wins (LWW) resolution, backend versioning APIs, and unit tests that validate conflict-resolution logic under concurrent updates.',
+    tech: ['Next.js (App Router)', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'IndexedDB'],
     live: '#',
     repo: '#',
-    image: '/placeholder/project-alpha.png'
+    status: 'Ongoing'
   },
   {
-    title: 'Project Beta',
-    desc: 'An AI experimental project integrating prompt-based search and vector retrieval for smart recommendations.',
-    tech: ['React', 'Python', 'AI'],
+    title: 'SecureFlow — Fraud Detection for Payments',
+    desc: 'A fraud detection pipeline that analyzes payment transaction streams, applies anomaly detection to surface suspicious behavior in near-real time, and generates alerts. Prototype exploration of blockchain-backed audit trails and ongoing improvements to models and scalability.',
+    tech: ['Python', 'Pandas', 'Scikit-learn', 'Node.js'],
     live: '#',
     repo: '#',
-    image: '/placeholder/project-beta.png'
+    status: 'Completed'
   },
   {
-    title: 'Project Gamma',
-    desc: 'E-commerce prototype with serverless APIs, secure payments, and analytics integration.',
-    tech: ['Next.js', 'Stripe', 'Postgres'],
+    title: 'Zunj Divyang Sanstha — Donations & Volunteer Platform',
+    desc: 'Led frontend development to build a responsive site with donation and volunteer management. Integrated Cashfree Payments and secure webhooks, implemented campaign-wise donation tracking, and provided real-time insights for fundraising transparency.',
+    tech: ['React.js', 'Cashfree API'],
     live: '#',
     repo: '#',
-    image: '/placeholder/project-gamma.png'
+    status: 'Completed'
   },
   {
-    title: 'Project Delta',
-    desc: 'Productivity app that syncs across devices and supports offline-first usage.',
-    tech: ['React', 'PWA', 'IndexedDB'],
+    title: 'my personal portfolio',
+    desc: 'This portfolio site — built with Next.js and Tailwind CSS, optimized for accessibility, performance, and recruiter-friendly presentation. Includes resume download, case-study style project listings, and a contact form with server-side form handling.',
+    tech: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
     live: '#',
     repo: '#',
-    image: '/placeholder/project-delta.png'
-  },
-  {
-    title: 'Project Epsilon',
-    desc: 'Data visualization dashboards for operational metrics with streaming updates.',
-    tech: ['D3.js', 'React', 'Node'],
-    live: '#',
-    repo: '#',
-    image: '/placeholder/project-epsilon.png'
-  },
-  {
-    title: 'Project Zeta',
-    desc: 'Internal tooling project to automate workflows and reduce manual steps.',
-    tech: ['TypeScript', 'GraphQL', 'Prisma'],
-    live: '#',
-    repo: '#',
-    image: '/placeholder/project-zeta.png'
+    status: 'Ongoing'
   }
 ]

@@ -1,12 +1,34 @@
 export const skills = [
-  { name: 'React', category: 'Frontend' },
-  { name: 'Next.js', category: 'Frontend' },
-  { name: 'TypeScript', category: 'Frontend' },
-  { name: 'Tailwind CSS', category: 'Frontend' },
-  { name: 'Node.js', category: 'Backend' },
-  { name: 'Postgres', category: 'Backend' },
-  { name: 'Prisma', category: 'Backend' },
-  { name: 'Python', category: 'AI / Data' },
-  { name: 'ML Integration', category: 'AI / Data' },
-  { name: 'Vector Search', category: 'AI / Data' }
+  {
+    category: 'Programming Languages',
+    items: ['C++', 'C', 'Java', 'Python']
+  },
+  {
+    category: 'Frontend Development',
+    items: ['React.js', 'Next.js', 'HTML5', 'CSS3', 'JavaScript']
+  },
+  {
+    category: 'Backend Development',
+    items: ['Node.js', 'REST APIs']
+  },
+  {
+    category: 'Databases',
+    items: ['MySQL', 'MongoDB', 'PostgreSQL (project usage)']
+  },
+  {
+    category: 'Machine Learning & Data Libraries',
+    items: ['Pandas', 'NumPy', 'Scikit-learn', 'PyTorch']
+  },
+  {
+    category: 'Tools & Platforms',
+    items: ['Git', 'GitHub', 'Visual Studio Code', 'Google Colab']
+  },
+  {
+    category: 'Core Computer Science',
+    items: ['Data Structures & Algorithms', 'Object-Oriented Programming', 'Database Management Systems', 'Operating Systems']
+  },
+  {
+    category: 'Soft Skills',
+    items: ['Problem Solving', 'Critical Thinking', 'Team Collaboration']
+  }
 ]

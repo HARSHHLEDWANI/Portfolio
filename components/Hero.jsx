@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import Reveal from './Reveal'
 
 export default function Hero() {
@@ -21,9 +20,10 @@ export default function Hero() {
         </Reveal>
 
         <Reveal>
-          <div className="relative mx-auto w-72 h-72 md:w-96 md:h-96 bg-gradient-to-br from-accent to-primary rounded-2xl overflow-hidden animate-float shadow-2xl">
-            {/* placeholder: replace with real friendly professional photo */}
-            <Image src="https://placehold.co/600x600" alt="Harsh Ledwani" fill style={{objectFit:'cover'}} priority />
+          <div className="relative mx-auto w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden animate-float shadow-2xl">
+            {/* placeholder: solid color box until real image is provided */}
+            <div role="img" aria-label="Profile placeholder" className="absolute inset-0" style={{backgroundColor: '#06b6d4'}} />
+            <div className="absolute inset-0 flex items-center justify-center text-slate-900 font-bold">HL</div>
           </div>
         </Reveal>
       </div>
