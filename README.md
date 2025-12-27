@@ -16,7 +16,14 @@ Local development:
 
 Deploy: recommended to Vercel or Netlify for static optimization.
 
-Replace placeholder images and copy with your real content. Provide social links and preferred email/contact info if you'd like them included in the header/footer. A public resume PDF is available at `/resume` by default — replace `public/resume.pdf` with your final resume. Also tell me if you'd like TypeScript or additional pages (blog, resume PDF improvements, case studies) and I will add them.
+Replace placeholder images and copy with your real content. Provide social links and preferred email/contact info if you'd like them included in the header/footer. A public resume PDF is available at `/resume` by default — replace `public/resume.pdf` with your final resume.
+
+How to edit skills & projects
+
+- Edit `data/skills.js` to add or reorganize skills. `components/Skills.jsx` reads this file and renders icons automatically.
+- Edit `data/projects.js` to add or update project cards (title, desc, tech, live, repo, image). `components/Projects.jsx` will display them.
+
+Also tell me if you'd like TypeScript or additional pages (blog, resume PDF improvements, case studies) and I will add them.
 
 ## Deploying to Vercel
 
