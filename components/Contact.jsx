@@ -8,7 +8,7 @@ export default function Contact(){
           <h2 className="text-3xl font-bold mb-6 text-white">Get in touch</h2>
           <p className="text-slate-300 mb-6">Interested in working together? Send a message and I'll get back to you.</p>
 
-          <form className="grid gap-4" onSubmit={(e)=>{ e.preventDefault(); alert('This is a placeholder — wire up your backend or Formspree.') }}>
+          <form id="contactForm" className="grid gap-4">
           <label className="sr-only" htmlFor="name">Name</label>
           <input id="name" name="name" className="rounded-md p-3 bg-neutral-800 border border-neutral-700 text-slate-200" placeholder="Your name" required />
 
@@ -19,10 +19,28 @@ export default function Contact(){
           <textarea id="message" name="message" rows="5" className="rounded-md p-3 bg-neutral-800 border border-neutral-700 text-slate-200" placeholder="How can I help?" required></textarea>
 
           <div className="flex gap-4">
-            <button type="submit" className="px-5 py-3 bg-primary rounded-md font-semibold text-neutral-900">Send Message</button>
-            <a href="mailto:hi@example.com" className="px-5 py-3 border rounded-md text-slate-200 hover:bg-neutral-800">Email</a>
+            <button id="sendBtn" type="submit" className="px-5 py-3 bg-primary rounded-md font-semibold text-neutral-900">Send Message</button>
+            <a href={`mailto:ledwani830@gmail.com`} className="px-5 py-3 border rounded-md text-slate-200 hover:bg-neutral-800">Email</a>
           </div>
           </form>
+
+          <script dangerouslySetInnerHTML={{ __html: `
+            (function(){
+              const form = document.getElementById('contactForm')
+              const btn = document.getElementById('sendBtn')
+              form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                btn.disabled = true; btn.textContent = 'Sending...'
+                const data = { name: form.name.value, email: form.email.value, message: form.message.value }
+                try{
+                  const res = await fetch('/api/contact', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
+                  if(res.ok){ alert('Message sent — thanks!') ; form.reset() }
+                  else { alert('There was an error sending your message.') }
+                }catch(err){ alert('Network error sending message.') }
+                btn.disabled = false; btn.textContent = 'Send Message'
+              })
+            })()
+          `}} />
         </Reveal>
       </div>
     </section>
