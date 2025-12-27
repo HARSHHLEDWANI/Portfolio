@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { FiMenu, FiX } from 'react-icons/fi'
-import ThemeToggle from './ThemeToggle'
+import ThemeToggle from './ThemeToggle' 
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -40,11 +41,11 @@ export default function Navbar() {
         <Link href="#home" className="font-bold text-xl text-white">Harsh Ledwani</Link>
 
         <nav role="navigation" aria-label="Main navigation" className="hidden md:flex gap-6 items-center text-slate-200">
-          <a href="#about" className={`hover:text-white ${active==='about'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='about'? 'page' : undefined}>About</a>
-          <a href="#skills" className={`hover:text-white ${active==='skills'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='skills'? 'page' : undefined}>Skills</a>
-          <a href="#projects" className={`hover:text-white ${active==='projects'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='projects'? 'page' : undefined}>Projects</a>
-          <a href="#contact" className={`hover:text-white ${active==='contact'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='contact'? 'page' : undefined}>Contact</a>
-          <a href="/resume" className="hover:text-white text-slate-200">Resume</a>
+          <motion.a href="#about" whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} transition={{ type: 'spring', stiffness: 300 }} className={`hover:text-white ${active==='about'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='about'? 'page' : undefined}>About</motion.a>
+          <motion.a href="#skills" whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} transition={{ type: 'spring', stiffness: 300 }} className={`hover:text-white ${active==='skills'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='skills'? 'page' : undefined}>Skills</motion.a>
+          <motion.a href="#projects" whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} transition={{ type: 'spring', stiffness: 300 }} className={`hover:text-white ${active==='projects'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='projects'? 'page' : undefined}>Projects</motion.a>
+          <motion.a href="#contact" whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} transition={{ type: 'spring', stiffness: 300 }} className={`hover:text-white ${active==='contact'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='contact'? 'page' : undefined}>Contact</motion.a>
+          <motion.a href="/resume" whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} transition={{ type: 'spring', stiffness: 300 }} className="hover:text-white text-slate-200">Resume</motion.a>
           <div className="ml-2">
             <ThemeToggle />
           </div>
@@ -59,10 +60,12 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-neutral-900/95" role="dialog" aria-label="Mobile menu">
           <div className="flex flex-col px-6 py-4 gap-4">
-            <a href="#about" onClick={() => setOpen(false)} aria-current={active==='about'?'page':undefined}>About</a>
-            <a href="#skills" onClick={() => setOpen(false)} aria-current={active==='skills'?'page':undefined}>Skills</a>
-            <a href="#projects" onClick={() => setOpen(false)} aria-current={active==='projects'?'page':undefined}>Projects</a>
-            <a href="#contact" onClick={() => setOpen(false)} aria-current={active==='contact'?'page':undefined}>Contact</a>            <a href="/resume" onClick={() => setOpen(false)}>Resume</a>          </div>
+            <motion.a href="#about" onClick={() => setOpen(false)} whileTap={{ scale: 0.98 }} aria-current={active==='about'?'page':undefined}>About</motion.a>
+            <motion.a href="#skills" onClick={() => setOpen(false)} whileTap={{ scale: 0.98 }} aria-current={active==='skills'?'page':undefined}>Skills</motion.a>
+            <motion.a href="#projects" onClick={() => setOpen(false)} whileTap={{ scale: 0.98 }} aria-current={active==='projects'?'page':undefined}>Projects</motion.a>
+            <motion.a href="#contact" onClick={() => setOpen(false)} whileTap={{ scale: 0.98 }} aria-current={active==='contact'?'page':undefined}>Contact</motion.a>
+            <motion.a href="/resume" onClick={() => setOpen(false)} whileTap={{ scale: 0.98 }}>Resume</motion.a>
+          </div>
         </div>
       )}
     </header>

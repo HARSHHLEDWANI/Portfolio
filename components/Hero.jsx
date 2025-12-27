@@ -12,8 +12,8 @@ export default function Hero() {
             <p className="mt-4 text-xl text-slate-300">I craft modern web apps & AI-powered experiences. <span className="text-accent-cyan"><TypingText text={"I build resilient offline-first sync engines, payment integrations, and ML-powered tooling."} speed={30} /></span></p>
 
             <div className="mt-8 flex gap-4">
-              <a href="#projects" className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-accent-purple text-black font-semibold hover:scale-105 transform transition">View Projects</a>
-              <a href="#contact" className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-slate-700 text-slate-200 hover:bg-neutral-800">Contact Me</a>
+              <motion.a href="#projects" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }} transition={{ type: 'spring', stiffness: 280 }} className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-accent-purple text-black font-semibold">View Projects</motion.a>
+              <motion.a href="#contact" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ type: 'spring', stiffness: 280 }} className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-slate-700 text-slate-200">Contact Me</motion.a>
             </div>
 
             <p className="mt-6 text-sm text-slate-400 max-w-xl">Full stack developer focused on performance, accessibility, and practical AI integrations — shipping production-ready features and scalable systems.</p>
