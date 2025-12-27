@@ -13,8 +13,21 @@ module.exports = {
         sans: ['"Inter"', 'system-ui', 'sans-serif'],
       },
       colors: {
-        primary: '#0ea5a4', // teal-ish
-        accent: '#7c3aed', // purple
+        // Modern dark palette and accents
+        background: {
+          DEFAULT: '#0F111A',
+          'alt': '#1A1F2E'
+        },
+        text: {
+          DEFAULT: '#E5E7EB'
+        },
+        accent: {
+          purple: '#7F5AF0',
+          sky: '#38BDF8',
+          cyan: '#22D3EE'
+        },
+        primary: '#7F5AF0',
+        // legacy tokens
         light: {
           bg: '#F4F6F9',
           surface: '#FFFFFF',

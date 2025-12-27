@@ -1,4 +1,5 @@
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import { projects } from '../data/projects'
 
@@ -14,7 +15,7 @@ export default function Projects() {
         <Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p, idx) => (
-            <article key={p.title} role="article" aria-labelledby={`proj-${idx}`} className="bg-neutral-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow transform hover:-translate-y-1 hover:scale-[1.01]">
+            <motion.article key={p.title} role="article" aria-labelledby={`proj-${idx}`} tabIndex={0} whileHover={{scale:1.02}} whileTap={{scale:0.99}} className="bg-neutral-800 rounded-xl overflow-hidden shadow-lg focus:outline-none focus:ring-2 focus:ring-accent-sky transition-shadow">
               <div className="relative h-44">
                 <div role="img" aria-label={`Placeholder image for ${p.title}`} className="w-full h-full absolute inset-0" style={{backgroundColor: colors[idx % colors.length]}} />
               </div>
@@ -33,7 +34,7 @@ export default function Projects() {
                   </div>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
           </div>
         </Reveal>

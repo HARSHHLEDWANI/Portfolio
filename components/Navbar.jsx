@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
+import ThemeToggle from './ThemeToggle'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -39,11 +40,14 @@ export default function Navbar() {
         <Link href="#home" className="font-bold text-xl text-white">Harsh Ledwani</Link>
 
         <nav role="navigation" aria-label="Main navigation" className="hidden md:flex gap-6 items-center text-slate-200">
-          <a href="#about" className={`hover:text-white ${active==='about'?'text-primary font-semibold':'text-slate-200'}`} aria-current={active==='about'? 'page' : undefined}>About</a>
-          <a href="#skills" className={`hover:text-white ${active==='skills'?'text-primary font-semibold':'text-slate-200'}`} aria-current={active==='skills'? 'page' : undefined}>Skills</a>
-          <a href="#projects" className={`hover:text-white ${active==='projects'?'text-primary font-semibold':'text-slate-200'}`} aria-current={active==='projects'? 'page' : undefined}>Projects</a>
-          <a href="#contact" className={`hover:text-white ${active==='contact'?'text-primary font-semibold':'text-slate-200'}`} aria-current={active==='contact'? 'page' : undefined}>Contact</a>
+          <a href="#about" className={`hover:text-white ${active==='about'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='about'? 'page' : undefined}>About</a>
+          <a href="#skills" className={`hover:text-white ${active==='skills'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='skills'? 'page' : undefined}>Skills</a>
+          <a href="#projects" className={`hover:text-white ${active==='projects'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='projects'? 'page' : undefined}>Projects</a>
+          <a href="#contact" className={`hover:text-white ${active==='contact'?'text-accent-purple font-semibold':'text-slate-200'}`} aria-current={active==='contact'? 'page' : undefined}>Contact</a>
           <a href="/resume" className="hover:text-white text-slate-200">Resume</a>
+          <div className="ml-2">
+            <ThemeToggle />
+          </div>
         </nav>
 
         <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Toggle Menu">
