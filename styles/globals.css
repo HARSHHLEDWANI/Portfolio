@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  color-scheme: dark;
+}
+
+html,body,#__next{height:100%;}
+body{@apply bg-neutral-900 text-slate-100}
+
+/* small helper to improve focus outlines */
+:focus{outline:2px solid rgba(124,58,237,0.6); outline-offset:2px}
+
+/* smooth scroll */
+html{scroll-behavior:smooth}
+
+/* reveal on scroll */
+.reveal-hidden { opacity: 0; transform: translateY(10px); transition: opacity .6s cubic-bezier(.2,.9,.3,1), transform .6s cubic-bezier(.2,.9,.3,1); }
+.reveal-show { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-hidden, .reveal-show { transition: none !important; }
+}
