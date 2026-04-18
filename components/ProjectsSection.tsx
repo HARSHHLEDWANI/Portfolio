@@ -11,6 +11,8 @@ const STATUS_STYLE: Record<ProjectStatus, { color: string; border: string }> = {
   LIVE:      { color: 'var(--neon-cyan)',  border: '1px solid var(--neon-cyan)' },
 };
 
+const FALLBACK_STATUS = STATUS_STYLE.BUILDING;
+
 export default function ProjectsSection() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -78,7 +80,7 @@ export default function ProjectsSection() {
           {projects.map((project) => {
             const isExpanded = expandedId === project.id;
             const isHovered = hoveredId === project.id;
-            const statusStyle = STATUS_STYLE[project.status];
+            const statusStyle = STATUS_STYLE[project.status] ?? FALLBACK_STATUS;
 
             return (
               <div key={project.id}>

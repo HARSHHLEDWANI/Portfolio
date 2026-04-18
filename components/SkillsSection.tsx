@@ -2,13 +2,14 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import Image from 'next/image';
 import { skillCategories, levelConfig, type SkillLevel } from '../lib/skills';
+
+const FALLBACK_CFG = { fill: 30, color: 'var(--text-secondary)' };
 
 function SkillBar({ name, level, index }: { name: string; level: SkillLevel; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-40px' });
-  const cfg = levelConfig[level];
+  const cfg = levelConfig[level] ?? FALLBACK_CFG;
 
   return (
     <div ref={ref} style={{ marginBottom: 14 }}>
