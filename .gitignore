@@ -1,0 +1,99 @@
+# ===========================
+# Dependencies
+# ===========================
+node_modules/
+.pnp
+.pnp.js
+
+# ===========================
+# Next.js
+# ===========================
+.next/
+out/
+build/
+
+# ===========================
+# Environment Variables
+# ===========================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===========================
+# Logs
+# ===========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+build.log
+
+# ===========================
+# Build Artifacts
+# ===========================
+dist/
+dist-ssr/
+*.tsbuildinfo
+next-env.d.ts
+
+# ===========================
+# Testing & Coverage
+# ===========================
+coverage/
+.nyc_output
+
+# ===========================
+# OS & Editor
+# ===========================
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/
+.idea/
+
+# ===========================
+# Vercel
+# ===========================
+.vercel
+
+# ===========================
+# Python (venv at root)
+# ===========================
+.venv/
+__pycache__/
+*.pyc
+
+# ===========================
+# AI Assistant / IDE Tool Files
+# ===========================
+.claude/
+.cursor/
+.cursorrules
+.kiro/
+.mcp.json
+.opencode.json
+.windsurfrules
+.code-review-graph/
+
+# ===========================
+# Stale Dev-Only Docs
+# ===========================
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+CINEMATIC_QUICK_REFERENCE.md
+CINEMATIC_REDESIGN.md
+COMPLETION_CHECKLIST.md
+COMPONENTS.md
+FILES_MANIFEST.md
+QUICK_START.md
+README_NEW.md
+SETUP_GUIDE.md
