@@ -16,11 +16,8 @@ export function ScrollProgress() {
 
   return (
     <div
-      className="fixed top-0 left-0 z-[9997] h-[2px] transition-all duration-150 pointer-events-none"
-      style={{
-        width: `${progress}%`,
-        background: 'linear-gradient(90deg, var(--accent) 0%, var(--accent-mint) 100%)',
-      }}
+      className="fixed top-0 left-0 z-[9997] h-[2px] pointer-events-none no-transition"
+      style={{ width: `${progress}%`, background: '#FF3D00' }}
     />
   );
 }

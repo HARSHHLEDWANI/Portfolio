@@ -1,46 +1,39 @@
-import { Inter, Inter_Tight, JetBrains_Mono } from 'next/font/google';
+import { Bebas_Neue, Instrument_Sans, IBM_Plex_Mono } from 'next/font/google';
 import { Providers } from './providers';
-import { PageLoader } from './components/PageLoader';
 import { ScrollProgress } from './components/ScrollProgress';
-import { SpecialEffects } from './components/effects/SpecialEffects';
 import { CustomCursor } from './components/CustomCursor';
 import '../styles/globals.css';
 
-const inter = Inter({
+const bebasNeue = Bebas_Neue({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: '400',
+  variable: '--font-bebas',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
 });
 
-const interTight = Inter_Tight({
+const instrumentSans = Instrument_Sans({
   subsets: ['latin'],
-  variable: '--font-inter-tight',
+  variable: '--font-instrument',
   display: 'swap',
-  weight: ['500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
 });
 
-const mono = JetBrains_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ['latin'],
-  variable: '--font-mono',
+  variable: '--font-ibm-mono',
   display: 'swap',
-  weight: ['400', '500'],
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata = {
   title: 'Harsh Ledwani — Full-Stack Developer',
-  description: 'CS undergraduate building secure, scalable systems at the intersection of AI and full-stack engineering. Based in India.',
-  keywords: 'Full Stack Developer, React, Next.js, Node.js, Machine Learning, Python, Blockchain, Portfolio',
+  description: 'CS undergraduate at SIT Pune building systems at the intersection of AI, Blockchain, and Full-Stack Engineering.',
+  keywords: 'Full Stack Developer, React, Next.js, Machine Learning, Python, Blockchain, AI, Portfolio',
   authors: [{ name: 'Harsh Ledwani', url: 'https://github.com/HARSHHLEDWANI' }],
   openGraph: {
     title: 'Harsh Ledwani — Full-Stack Developer',
-    description: 'Building robust, scalable systems at the intersection of AI and engineering.',
+    description: 'CS undergraduate building AI · Blockchain · Full-Stack systems.',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Harsh Ledwani — Full-Stack Developer',
-    description: 'Building robust, scalable systems at the intersection of AI and engineering.',
   },
 };
 
@@ -48,17 +41,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <meta name="theme-color" content="#7C3AED" />
+        <meta name="theme-color" content="#0A0A0A" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body
-        className={`${inter.variable} ${interTight.variable} ${mono.variable} bg-dark-bg text-dark-text antialiased overflow-x-hidden`}
+        className={`${bebasNeue.variable} ${instrumentSans.variable} ${ibmPlexMono.variable} antialiased overflow-x-hidden`}
+        style={{ background: '#0A0A0A', color: '#F0EDE8' }}
       >
         <CustomCursor />
-        <SpecialEffects />
+        <ScrollProgress />
         <Providers>
-          <PageLoader />
-          <ScrollProgress />
           {children}
         </Providers>
       </body>
