@@ -3,36 +3,26 @@
 @tailwind utilities;
 
 /* ════════════════════════════════════════════════
-   DESIGN TOKENS — BRUTALIST PRECISION
+   HARSH.SYS — DESIGN SYSTEM
    ════════════════════════════════════════════════ */
 :root {
-  --bg:         #0A0A0A;
-  --surface:    #111111;
-  --muted:      #2A2A2A;
-  --text:       #F0EDE8;
-  --text-dim:   #888882;
-  --text-ghost: #555550;
+  --bg-primary:    #080B14;
+  --bg-secondary:  #0D1117;
+  --bg-panel:      #111520;
+  --court-floor:   #8B4513;
+  --court-line:    #FFD700;
+  --neon-green:    #00FF88;
+  --neon-cyan:     #00CFFF;
+  --neon-amber:    #FFB347;
+  --text-primary:  #F0EDE8;
+  --text-secondary:#8892A4;
+  --text-dim:      #3D4557;
+  --border-dim:    rgba(255,255,255,0.07);
+  --border-glow:   rgba(0,207,255,0.25);
 
-  --vermillion: #FF3D00;
-  --lime:       #C8FF00;
-
-  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  /* Legacy compat */
-  --bg-primary:   #0A0A0A;
-  --bg-secondary: #111111;
-  --text-primary: #F0EDE8;
-  --text-secondary: #888882;
-  --text-muted:   #555550;
-  --accent:       #FF3D00;
-  --accent-light: #FF6B3D;
-  --accent-glow:  rgba(255,61,0,0.25);
-  --accent-cyan:  #C8FF00;
-  --accent-mint:  #C8FF00;
-  --neon:         #C8FF00;
-  --neon-glow:    rgba(200,255,0,0.20);
-  --border-solid: #2A2A2A;
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
 }
 
 /* ════════════════════════════════════════════════
@@ -42,163 +32,85 @@ html, body, #__next { height: 100%; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-instrument), 'Instrument Sans', system-ui, -apple-system, sans-serif;
-  line-height: 1.65;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
+  line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ════════════════════════════════════════════════
-   SCROLLBAR
-   ════════════════════════════════════════════════ */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--muted); }
-::-webkit-scrollbar-thumb:hover { background: var(--vermillion); }
+*, *::before, *::after { box-sizing: border-box; }
 
 /* ════════════════════════════════════════════════
-   SELECTION
+   CUSTOM SCROLLBAR
    ════════════════════════════════════════════════ */
-::selection { background: rgba(255,61,0,0.25); color: var(--text); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080B14; }
+::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,215,0,0.6); }
 
 /* ════════════════════════════════════════════════
-   CURSOR
+   TYPOGRAPHY UTILITIES
    ════════════════════════════════════════════════ */
-html { cursor: none; }
-@media (pointer: coarse) { html { cursor: auto; } }
-@media (pointer: coarse) { .custom-cursor { display: none !important; } }
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+.font-body    { font-family: var(--font-body); }
 
 /* ════════════════════════════════════════════════
-   TYPOGRAPHY — NO ROUNDED EDGES ON HEADLINES
+   PULSING DOT ANIMATION
    ════════════════════════════════════════════════ */
-h1, h2, h3, h4 {
-  font-family: var(--font-bebas), Impact, 'Arial Narrow', sans-serif;
-  letter-spacing: 0.02em;
-  line-height: 0.92;
-  text-transform: uppercase;
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
 }
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
 
 /* ════════════════════════════════════════════════
-   RULE LINE DIVIDERS
+   BLINK CURSOR
    ════════════════════════════════════════════════ */
-.rule-vermillion {
-  height: 5px;
-  background: var(--vermillion);
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
-.rule-thin {
-  height: 1px;
-  background: var(--muted);
-}
+.cursor-blink { animation: blink 1s step-end infinite; }
 
 /* ════════════════════════════════════════════════
-   SECTION NUMBER GHOST
+   CHEVRON BOUNCE
    ════════════════════════════════════════════════ */
-.section-ghost {
-  font-family: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
-  font-size: clamp(120px, 20vw, 280px);
-  font-weight: 400;
-  color: var(--text);
-  opacity: 0.04;
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
-  letter-spacing: -0.04em;
+@keyframes chevron-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
 }
+.chevron-bounce { animation: chevron-bounce 1.4s ease-in-out infinite; }
 
 /* ════════════════════════════════════════════════
-   MORPHING BLOB
+   CLIP-PATH HOVER FILL (project rows)
    ════════════════════════════════════════════════ */
-.blob {
-  animation: blob-morph 8s ease-in-out infinite, blob-spin 20s linear infinite;
-  will-change: border-radius, transform;
+.row-hover-fill {
+  position: relative;
+  overflow: hidden;
 }
-
-.blob-fast {
-  animation: blob-morph 1.5s ease-in-out infinite, blob-spin 3s linear infinite !important;
-}
-
-@keyframes blob-morph {
-  0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  25%     { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-  50%     { border-radius: 55% 45% 40% 60% / 35% 65% 45% 55%; }
-  75%     { border-radius: 40% 60% 55% 45% / 70% 30% 60% 40%; }
-}
-
-@keyframes blob-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-/* ════════════════════════════════════════════════
-   MARQUEE
-   ════════════════════════════════════════════════ */
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 22s linear infinite;
-}
-
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* ════════════════════════════════════════════════
-   SECTION TAG (MONO NUMBERED LABEL)
-   ════════════════════════════════════════════════ */
-.section-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-ghost);
-}
-
-/* ════════════════════════════════════════════════
-   PROJECT HOVER FILL (clip-path)
-   ════════════════════════════════════════════════ */
-.project-fill {
+.row-hover-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.03);
   clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.45s var(--ease-out);
+  transition: clip-path 0.3s ease;
+  pointer-events: none;
 }
-.project-row:hover .project-fill {
+.row-hover-fill:hover::before {
   clip-path: inset(0 0% 0 0);
 }
 
 /* ════════════════════════════════════════════════
-   GLOBAL TRANSITIONS
+   GLOBAL SECTION PADDING
    ════════════════════════════════════════════════ */
-* {
-  transition-property: color, background-color, border-color, opacity, transform;
-  transition-timing-function: var(--ease-out);
-  transition-duration: 200ms;
+.section-padding {
+  padding: 96px 0;
 }
-.no-transition { transition: none !important; }
-
-/* ════════════════════════════════════════════════
-   REDUCED MOTION
-   ════════════════════════════════════════════════ */
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+@media (max-width: 768px) {
+  .section-padding { padding: 64px 0; }
 }
-
-/* ════════════════════════════════════════════════
-   LEGACY COMPAT CLASSES
-   ════════════════════════════════════════════════ */
-.glass { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
-.gradient-text { color: var(--vermillion); }
-.glow-accent { box-shadow: 0 0 28px rgba(255,61,0,0.30); }
-.glow-neon   { box-shadow: 0 0 20px rgba(200,255,0,0.25); }
-.gradient-shimmer { color: var(--text); }
-.gradient-violet-cyan { color: var(--lime); }
