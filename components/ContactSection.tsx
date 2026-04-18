@@ -20,7 +20,7 @@ const LINKS = [
   {
     label: 'LINKEDIN →',
     sub: 'harsh-ledwani',
-    href: 'https://linkedin.com/in/harsh-ledwani',
+    href: 'https://www.linkedin.com/in/harsh-ledwani-097571219/',
   },
   {
     label: 'EMAIL →',
@@ -48,12 +48,11 @@ export default function ContactSection() {
     }, 300);
 
     try {
-      // TODO: Replace with your EmailJS credentials from emailjs.com
       await emailjs.sendForm(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         formRef.current,
-        'YOUR_PUBLIC_KEY'
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
       clearInterval(dotsInterval);
       setStatus('success');

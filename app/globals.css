@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ════════════════════════════════════════════════
+   HARSH.SYS — DESIGN SYSTEM
+   ════════════════════════════════════════════════ */
+:root {
+  --bg-primary:    #080B14;
+  --bg-secondary:  #0D1117;
+  --bg-panel:      #111520;
+  --court-floor:   #8B4513;
+  --court-line:    #FFD700;
+  --neon-green:    #00FF88;
+  --neon-cyan:     #00CFFF;
+  --neon-amber:    #FFB347;
+  --text-primary:  #F0EDE8;
+  --text-secondary:#8892A4;
+  --text-dim:      #3D4557;
+  --border-dim:    rgba(255,255,255,0.07);
+  --border-glow:   rgba(0,207,255,0.25);
+
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+
+/* ════════════════════════════════════════════════
+   BASE RESET
+   ════════════════════════════════════════════════ */
+html, body, #__next { height: 100%; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body), 'DM Sans', system-ui, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ════════════════════════════════════════════════
+   CUSTOM SCROLLBAR
+   ════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080B14; }
+::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,215,0,0.6); }
+
+/* ════════════════════════════════════════════════
+   TYPOGRAPHY UTILITIES
+   ════════════════════════════════════════════════ */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+.font-body    { font-family: var(--font-body); }
+
+/* ════════════════════════════════════════════════
+   PULSING DOT ANIMATION
+   ════════════════════════════════════════════════ */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
+}
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+
+/* ════════════════════════════════════════════════
+   BLINK CURSOR
+   ════════════════════════════════════════════════ */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+/* ════════════════════════════════════════════════
+   CHEVRON BOUNCE
+   ════════════════════════════════════════════════ */
+@keyframes chevron-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+.chevron-bounce { animation: chevron-bounce 1.4s ease-in-out infinite; }
+
+/* ════════════════════════════════════════════════
+   CLIP-PATH HOVER FILL (project rows)
+   ════════════════════════════════════════════════ */
+.row-hover-fill {
+  position: relative;
+  overflow: hidden;
+}
+.row-hover-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.03);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.3s ease;
+  pointer-events: none;
+}
+.row-hover-fill:hover::before {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ════════════════════════════════════════════════
+   GLOBAL SECTION PADDING
+   ════════════════════════════════════════════════ */
+.section-padding {
+  padding: 96px 0;
+}
+@media (max-width: 768px) {
+  .section-padding { padding: 64px 0; }
+}

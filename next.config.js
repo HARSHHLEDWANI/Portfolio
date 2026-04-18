@@ -8,7 +8,9 @@ const nextConfig = {
       'images.unsplash.com',
       'placehold.co',
       'via.placeholder.com',
-      'cdn.example.com'
+      'cdn.example.com',
+      'github-readme-stats.vercel.app',
+      'github-readme-streak-stats.herokuapp.com',
     ],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

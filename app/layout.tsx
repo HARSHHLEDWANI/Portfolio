@@ -1,5 +1,5 @@
 import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google';
-import '../styles/globals.css';
+import './globals.css';
 
 const syne = Syne({
   subsets: ['latin'],
