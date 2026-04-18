@@ -123,7 +123,7 @@ export function About() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.25, duration: 0.7, ease: EASE }}
             >
-              {STATS.map((stat, i) => (
+              {STATS.map((stat) => (
                 <div
                   key={stat.label}
                   className="p-5 rounded-2xl"
@@ -149,7 +149,7 @@ export function About() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.35, duration: 0.6, ease: EASE }}
               className="flex items-start gap-3 p-4 rounded-xl"
-              style={{ background: 'rgba(0,229,160,0.06)', border: '1px solid rgba(0,229,160,0.18)' }}
+              style={{ background: 'rgba(34,197,94,0.05)', border: '1px solid rgba(34,197,94,0.18)' }}
             >
               <span
                 className="mt-0.5 w-2 h-2 rounded-full shrink-0"

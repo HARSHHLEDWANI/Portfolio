@@ -54,7 +54,7 @@ export function Contact() {
     border: '1px solid rgba(255,255,255,0.09)',
     color: 'var(--text-primary)',
     fontSize: '14px',
-    fontFamily: 'var(--font-jakarta)',
+    fontFamily: 'var(--font-inter)',
     outline: 'none',
     transition: 'border-color 0.2s, box-shadow 0.2s',
   };
@@ -101,7 +101,7 @@ export function Contact() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.08, duration: 0.7, ease: EASE }}
               >
-                Let's build something.
+                Let's build something meaningful.
               </motion.h2>
               <motion.p
                 className="text-dark-text-secondary text-lg leading-relaxed"
