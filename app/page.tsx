@@ -13,6 +13,7 @@ import SkillsSection from '@/components/ui/SkillsSection';
 import AboutSection from '@/components/ui/AboutSection';
 import ContactSection from '@/components/ui/ContactSection';
 import FloatingTerminal from '@/components/ui/FloatingTerminal';
+import SectionDivider from '@/components/ui/SectionDivider';
 
 const CourtScene = dynamic(
   () => import('@/components/three/CourtScene'),
@@ -75,10 +76,15 @@ export default function Home() {
             />
           </section>
 
+          <SectionDivider />
           <StatsBar />
+          <SectionDivider />
           <ProjectsSection />
+          <SectionDivider />
           <SkillsSection />
+          <SectionDivider />
           <AboutSection />
+          <SectionDivider />
           <ContactSection />
 
           <FloatingTerminal />

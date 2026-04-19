@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const TIMELINE = [
@@ -27,10 +27,34 @@ const TIMELINE = [
 export default function AboutSection() {
   const lineRef = useRef<HTMLDivElement>(null);
   const inView = useInView(lineRef, { once: true, margin: '-80px' });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    setMousePos({
+      x: (e.clientX / window.innerWidth - 0.5) * 2,
+      y: (e.clientY / window.innerHeight - 0.5) * 2,
+    });
+  };
 
   return (
-    <section id="about" style={{ padding: '120px 0', background: '#080B14' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 80px' }} className="about-inner">
+    <section
+      id="about"
+      onMouseMove={handleMouseMove}
+      style={{ padding: '120px 0', background: '#080B14', position: 'relative', overflow: 'hidden' }}
+    >
+      {/* Mouse-follow glow */}
+      <div style={{
+        position: 'absolute',
+        width: 300, height: 300,
+        background: 'radial-gradient(circle, rgba(255,215,0,0.04) 0%, transparent 70%)',
+        pointerEvents: 'none',
+        left: `calc(${(mousePos.x + 1) * 50}% - 150px)`,
+        top: `calc(${(mousePos.y + 1) * 50}% - 150px)`,
+        transition: 'left 0.1s, top 0.1s',
+        zIndex: 0,
+      }} />
+
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 80px', position: 'relative', zIndex: 1 }} className="about-inner">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
@@ -47,10 +71,14 @@ export default function AboutSection() {
 
         {/* Two columns */}
         <div style={{ display: 'grid', gridTemplateColumns: '40% 60%', gap: 80 }} className="about-grid">
-          {/* LEFT — Monogram */}
+          {/* LEFT — Monogram (deepest layer, moves most) */}
           <motion.div
             initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6, delay: 0.15 }}
+            style={{
+              transform: `translate(${mousePos.x * -12}px, ${mousePos.y * -12}px)`,
+              transition: 'transform 0.15s ease-out',
+            }}
           >
             <div style={{
               width: 220, height: 220,
@@ -59,7 +87,6 @@ export default function AboutSection() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: 24,
             }}>
-              {/* Replace with <img> when photo ready */}
               <span style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: 96, fontWeight: 800, color: '#FFD700' }}>
                 HL
               </span>
@@ -83,15 +110,28 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6, delay: 0.25 }}
           >
-            <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 16, color: '#F0EDE8', lineHeight: 1.75, marginBottom: 16 }}>
-              I&apos;m a Computer Science undergraduate at Symbiosis Institute of Technology, Pune — building systems across the full stack, from ML pipelines to production web platforms. I care about both the correctness and the craft.
-            </p>
-            <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 15, color: '#8892A4', lineHeight: 1.7, marginBottom: 48 }}>
-              My work spans fraud detection systems, NGO infrastructure, F1 analytics, and adaptive learning platforms. I approach every problem like a chess match — every move calculated, every system designed to scale.
-            </p>
+            {/* Bio text (middle layer) */}
+            <div style={{
+              transform: `translate(${mousePos.x * -5}px, ${mousePos.y * -5}px)`,
+              transition: 'transform 0.2s ease-out',
+            }}>
+              <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 16, color: '#F0EDE8', lineHeight: 1.75, marginBottom: 16 }}>
+                I&apos;m a Computer Science undergraduate at Symbiosis Institute of Technology, Pune — building systems across the full stack, from ML pipelines to production web platforms. I care about both the correctness and the craft.
+              </p>
+              <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 15, color: '#8892A4', lineHeight: 1.7, marginBottom: 48 }}>
+                My work spans fraud detection systems, NGO infrastructure, F1 analytics, and adaptive learning platforms. I approach every problem like a chess match — every move calculated, every system designed to scale.
+              </p>
+            </div>
 
-            {/* Timeline */}
-            <div ref={lineRef} style={{ position: 'relative', paddingLeft: 24 }}>
+            {/* Timeline (shallowest layer, barely moves) */}
+            <div
+              ref={lineRef}
+              style={{
+                position: 'relative', paddingLeft: 24,
+                transform: `translate(${mousePos.x * -2}px, ${mousePos.y * -2}px)`,
+                transition: 'transform 0.3s ease-out',
+              }}
+            >
               {/* Animated vertical line */}
               <motion.div
                 animate={{ height: inView ? '100%' : '0%' }}

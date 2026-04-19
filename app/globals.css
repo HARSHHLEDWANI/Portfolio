@@ -122,6 +122,14 @@ body {
 }
 
 /* ════════════════════════════════════════════════
+   GOLD SWEEP DIVIDER
+   ════════════════════════════════════════════════ */
+@keyframes goldSweep {
+  0%   { transform: translateX(-100%); opacity: 0.6; }
+  100% { transform: translateX(100%);  opacity: 0; }
+}
+
+/* ════════════════════════════════════════════════
    GLOBAL SECTION PADDING
    ════════════════════════════════════════════════ */
 .section-padding {

@@ -127,9 +127,17 @@ export default function ProjectsSection() {
                     style={{ overflow: 'hidden' }}
                   >
                     <div style={{
-                      background: '#111520',
-                      borderLeft: '2px solid #00CFFF',
+                      background: `repeating-linear-gradient(
+                        -45deg,
+                        transparent,
+                        transparent 10px,
+                        rgba(255,255,255,0.015) 10px,
+                        rgba(255,255,255,0.015) 11px
+                      ), #1a3a1a`,
+                      borderLeft: '3px solid #2d5a2d',
                       padding: '20px 24px', marginBottom: 0,
+                      position: 'relative', overflow: 'hidden',
+                      boxShadow: 'inset 0 0 60px rgba(0,0,0,0.4)',
                     }}>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 20, marginBottom: 20 }} className="panel-grid">
                         {[
@@ -138,10 +146,16 @@ export default function ProjectsSection() {
                           { label: 'Impact', text: project.impact },
                         ].map(({ label, text }) => (
                           <div key={label}>
-                            <span style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 10, color: '#00CFFF', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: 6 }}>
-                              {label}:
+                            <span style={{
+                              fontFamily: 'var(--font-syne), sans-serif',
+                              fontStyle: 'italic',
+                              fontSize: 10, color: 'rgba(255,255,255,0.5)',
+                              textTransform: 'uppercase', letterSpacing: '0.15em',
+                              display: 'block', marginBottom: 6,
+                            }}>
+                              → {label}
                             </span>
-                            <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 13, color: '#8892A4', margin: 0, lineHeight: 1.6 }}>
+                            <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 13, color: 'rgba(255,255,255,0.85)', margin: 0, lineHeight: 1.6 }}>
                               {text}
                             </p>
                           </div>
@@ -150,15 +164,13 @@ export default function ProjectsSection() {
                       <div style={{ display: 'flex', gap: 12 }}>
                         {project.github && (
                           <a href={project.github} target="_blank" rel="noopener noreferrer"
-                            style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 12, color: '#8892A4', border: '1px solid rgba(255,255,255,0.07)', padding: '6px 16px', textDecoration: 'none', transition: 'color 0.2s, border-color 0.2s' }}
-                            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#00CFFF'; (e.currentTarget as HTMLElement).style.borderColor = '#00CFFF'; }}
-                            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '#8892A4'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)'; }}
+                            style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 700, fontSize: 13, color: '#fff', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', padding: '8px 20px', textDecoration: 'none', borderRadius: 0 }}
                           >GitHub →</a>
                         )}
                         {project.live && (
                           <a href={project.live} target="_blank" rel="noopener noreferrer"
-                            style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 12, color: '#00CFFF', border: '1px solid #00CFFF', padding: '6px 16px', textDecoration: 'none' }}
-                          >Live ↗</a>
+                            style={{ fontFamily: 'var(--font-syne), sans-serif', fontWeight: 700, fontSize: 13, color: '#fff', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', padding: '8px 20px', textDecoration: 'none', borderRadius: 0 }}
+                          >PLAY →</a>
                         )}
                       </div>
                     </div>

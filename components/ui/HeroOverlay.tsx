@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const ROLES = [
@@ -64,6 +64,25 @@ function TypingRole() {
     }}>
       {ROLES[roleIdx].slice(0, charIdx)}
       <span className="cursor-blink">|</span>
+    </p>
+  );
+}
+
+function ShootHint() {
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const id = setTimeout(() => setVisible(false), 8000);
+    return () => clearTimeout(id);
+  }, []);
+  return (
+    <p style={{
+      fontFamily: 'var(--font-jetbrains), monospace',
+      fontSize: 10, color: '#3D4557',
+      marginTop: 4,
+      opacity: visible ? 1 : 0,
+      transition: 'opacity 0.8s ease',
+    }}>
+      CLICK THE PLAYER TO SHOOT 🏀
     </p>
   );
 }
@@ -156,6 +175,7 @@ export default function HeroOverlay() {
         <p style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 10, color: '#3D4557', marginTop: 4 }}>
           DRAG TO ORBIT · SCROLL TO ZOOM
         </p>
+        <ShootHint />
       </div>
     </div>
   );
