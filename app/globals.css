@@ -138,6 +138,29 @@ body {
 }
 
 /* ════════════════════════════════════════════════
+   NO-SELECT UTILITY
+   ════════════════════════════════════════════════ */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+canvas {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:focus-visible {
+  outline: 2px solid #00FF88;
+  outline-offset: 2px;
+}
+
+/* ════════════════════════════════════════════════
    GLOBAL SECTION PADDING
    ════════════════════════════════════════════════ */
 .section-padding {

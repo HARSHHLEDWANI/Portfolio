@@ -134,11 +134,13 @@ export default function Court() {
 
       {/* Bench area (Contact zone) */}
       {[10, 11.5, 13].map((x, i) => (
-        <mesh key={i} position={[x, 0.2, 4]}>
+        <mesh key={i} position={[x, 0.15, 4]}>
           <boxGeometry args={[1.2, 0.15, 0.4]} />
-          <meshStandardMaterial color="#1a1a2e" roughness={0.9} />
+          <meshStandardMaterial color="#3a2a1a" metalness={0.2} roughness={0.8} />
         </mesh>
       ))}
+      {/* Warm bench light */}
+      <pointLight position={[11, 2, 4]} intensity={5} color="#FFB347" distance={5} />
     </group>
   );
 }

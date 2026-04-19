@@ -130,6 +130,8 @@ export default function HeroOverlay() {
           fontFamily: 'var(--font-jetbrains), monospace',
           fontSize: 11, color: '#8892A4',
           letterSpacing: '0.15em', marginBottom: 8,
+          userSelect: 'none', WebkitUserSelect: 'none',
+          background: 'transparent',
         }}>
           HARSH LEDWANI · CS @ SIT PUNE · 2026
         </p>
@@ -146,6 +148,7 @@ export default function HeroOverlay() {
           fontFamily: 'var(--font-dm-sans), sans-serif',
           fontSize: 16, color: '#8892A4',
           marginTop: 12, marginBottom: 24, maxWidth: 440,
+          userSelect: 'none', WebkitUserSelect: 'none',
         }}>
           Building systems where correctness meets craft.
         </p>
@@ -192,6 +195,7 @@ export default function HeroOverlay() {
           fontFamily: 'var(--font-jetbrains), monospace', fontSize: 10,
           color: 'rgba(255,215,0,0.5)', letterSpacing: '0.12em', margin: 0,
           textTransform: 'uppercase',
+          userSelect: 'none', WebkitUserSelect: 'none',
         }}>
           ↑ Click glowing zones to explore
         </p>
@@ -199,6 +203,7 @@ export default function HeroOverlay() {
           fontFamily: 'var(--font-jetbrains), monospace', fontSize: 10,
           color: 'rgba(255,255,255,0.2)', letterSpacing: '0.1em', margin: 0,
           textTransform: 'uppercase',
+          userSelect: 'none', WebkitUserSelect: 'none',
         }}>
           Drag to orbit · Scroll to zoom
         </p>

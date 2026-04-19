@@ -9,7 +9,7 @@ import * as THREE from 'three';
 const ZONE_CONFIG: Record<ZoneName, { position: [number,number,number]; args: [number,number,number]; color: string }> = {
   DEFAULT:  { position: [0, 0.5, 0], args: [1, 1, 1], color: '#FFD700' },
   PROJECTS: { position: [-10, 0.5, 0], args: [5, 1, 6], color: '#00FF88' },
-  SKILLS:   { position: [16,  3.5, 0], args: [3, 7, 2], color: '#00CFFF' },
+  SKILLS:   { position: [12.5, 3.5, 0], args: [3, 7, 2], color: '#00CFFF' },
   ABOUT:    { position: [0,   0.5, 0], args: [5, 1, 5], color: '#FFD700' },
   CONTACT:  { position: [12,  0.5, 4], args: [4, 1, 4], color: '#FFB347' },
 };
@@ -29,7 +29,7 @@ export default function ZoneHitbox({ zone, onZoneClick }: Props) {
     t.current += delta;
     if (ringRef.current) {
       (ringRef.current.material as THREE.MeshBasicMaterial).opacity =
-        Math.sin(t.current * 2) * 0.15 + 0.2;
+        Math.sin(t.current * 2) * 0.06 + 0.08;
     }
   });
 
@@ -42,7 +42,7 @@ export default function ZoneHitbox({ zone, onZoneClick }: Props) {
         rotation={[-Math.PI / 2, 0, 0]}
       >
         <ringGeometry args={[1.5, 1.6, 32]} />
-        <meshBasicMaterial color={cfg.color} transparent opacity={0.3} />
+        <meshBasicMaterial color={cfg.color} transparent opacity={0.08} />
       </mesh>
 
       {/* Invisible hitbox */}

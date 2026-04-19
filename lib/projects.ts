@@ -51,7 +51,7 @@ export const PROJECTS: Project[] = [
     solution: 'Built a unified analytics dashboard pulling from public F1 APIs with multi-season visualizations.',
     impact: 'Interactive data viz across 5+ seasons, live and usable.',
     github: 'https://github.com/HARSHHLEDWANI/F1',
-    live: 'https://f1-prediction.vercel.app',
+    live: 'https://f1-theta-seven.vercel.app',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=320&h=200&fit=crop',
   },
   {

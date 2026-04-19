@@ -29,8 +29,8 @@ export const ZONE_NUDGES = {
     target:   [-4,  0,  0] as [number, number, number],
   },
   SKILLS: {
-    position: [6, 16, 13] as [number, number, number],
-    target:   [6,  0,  0] as [number, number, number],
+    position: [8, 18, 14] as [number, number, number],
+    target:   [8,  0,  0] as [number, number, number],
   },
   ABOUT: {
     position: [0, 16, 13] as [number, number, number],

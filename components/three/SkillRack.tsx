@@ -145,7 +145,7 @@ export default function SkillRack({ onRackClick }: { onRackClick: () => void }) 
   const yLevels = [1.05, 2.05, 3.05, 4.05]
   yLevels.forEach(y => {
     xOffsets.forEach(dx => {
-      ballPositions.push([16 + dx, y, 0])
+      ballPositions.push([12.5 + dx, y, 0])
     })
   })
 
@@ -153,50 +153,50 @@ export default function SkillRack({ onRackClick }: { onRackClick: () => void }) 
     <group onClick={onRackClick}>
 
       {/* Left pole */}
-      <mesh position={[15.4, 3, 0]}>
+      <mesh position={[11.9, 3, 0]}>
         <cylinderGeometry args={[0.07, 0.07, 6.2, 8]} />
         <meshStandardMaterial color="#777" metalness={0.9} roughness={0.15} />
       </mesh>
 
       {/* Right pole */}
-      <mesh position={[16.6, 3, 0]}>
+      <mesh position={[13.1, 3, 0]}>
         <cylinderGeometry args={[0.07, 0.07, 6.2, 8]} />
         <meshStandardMaterial color="#777" metalness={0.9} roughness={0.15} />
       </mesh>
 
       {/* Shelf bars */}
       {[1.0, 2.0, 3.0, 4.0].map(y => (
-        <mesh key={y} position={[16, y - 0.18, 0]}>
+        <mesh key={y} position={[12.5, y - 0.18, 0]}>
           <boxGeometry args={[1.5, 0.07, 0.28]} />
           <meshStandardMaterial color="#555" metalness={0.8} roughness={0.25} />
         </mesh>
       ))}
 
       {/* Back support bar (top) */}
-      <mesh position={[16, 6.0, -0.1]}>
+      <mesh position={[12.5, 6.0, -0.1]}>
         <boxGeometry args={[1.5, 0.07, 0.07]} />
         <meshStandardMaterial color="#555" metalness={0.8} roughness={0.25} />
       </mesh>
 
       {/* Base plate */}
-      <mesh position={[16, 0.04, 0]}>
+      <mesh position={[12.5, 0.04, 0]}>
         <boxGeometry args={[1.8, 0.08, 0.55]} />
         <meshStandardMaterial color="#3a3a3a" metalness={0.7} roughness={0.4} />
       </mesh>
 
       {/* SKILLS sign background */}
-      <mesh position={[16, 6.55, 0]}>
+      <mesh position={[12.5, 6.55, 0]}>
         <boxGeometry args={[2.0, 0.65, 0.12]} />
         <meshStandardMaterial color="#0D1117" />
       </mesh>
       {/* Sign gold border */}
-      <mesh position={[16, 6.55, -0.07]}>
+      <mesh position={[12.5, 6.55, -0.07]}>
         <boxGeometry args={[2.15, 0.8, 0.06]} />
         <meshStandardMaterial color="#FFD700" metalness={0.6} roughness={0.3} />
       </mesh>
       {/* Sign text */}
       <Text
-        position={[16, 6.55, 0.07]}
+        position={[12.5, 6.55, 0.07]}
         fontSize={0.32}
         color="#FFD700"
         anchorX="center"
@@ -205,13 +205,13 @@ export default function SkillRack({ onRackClick }: { onRackClick: () => void }) 
         SKILLS
       </Text>
       {/* Sign support pole */}
-      <mesh position={[16, 5.95, 0]}>
+      <mesh position={[12.5, 5.95, 0]}>
         <cylinderGeometry args={[0.035, 0.035, 1.1, 8]} />
         <meshStandardMaterial color="#555" metalness={0.8} roughness={0.2} />
       </mesh>
 
       {/* Accent light on the rack */}
-      <pointLight position={[14, 4, 0]} intensity={20} color="#FFD700" distance={8} />
+      <pointLight position={[10.5, 4, 0]} intensity={20} color="#FFD700" distance={8} />
 
       {/* Skill balls */}
       {SKILLS_ON_RACK.map((skill, i) => (

@@ -4,29 +4,30 @@ import { useFrame } from '@react-three/fiber'
 import { Text } from '@react-three/drei'
 
 function CrowdRow({ zPos, side }: { zPos: number; side: 1 | -1 }) {
-  const COUNT = 22
+  const COUNT = 14
   return (
-    <group position={[0, 0, zPos]}>
+    <group position={[0, 1.5, zPos]}>
       {Array.from({ length: COUNT }, (_, i) => {
-        const x = -10.5 + i * 1.0
+        const x = -6.5 + i * 1.0
         return (
           <group key={i} position={[x, 0, 0]}>
             {/* Seat */}
             <mesh position={[0, 0.2, 0]}>
               <boxGeometry args={[0.7, 0.15, 0.5]} />
-              <meshStandardMaterial color={i % 3 === 0 ? '#1a0a00' : '#0d0600'} />
+              <meshStandardMaterial color={i % 3 === 0 ? '#1a0a00' : '#0d0600'} transparent opacity={0.6} />
             </mesh>
             {/* Body */}
             <mesh position={[0, 0.85, 0]}>
               <boxGeometry args={[0.45, 0.7, 0.3]} />
               <meshStandardMaterial
                 color={i % 4 === 0 ? '#0B1E3D' : i % 4 === 1 ? '#1a1a1a' : '#111'}
+                transparent opacity={0.6}
               />
             </mesh>
             {/* Head */}
             <mesh position={[0, 1.4, 0]}>
               <sphereGeometry args={[0.18, 8, 8]} />
-              <meshStandardMaterial color="#F5CBA7" />
+              <meshStandardMaterial color="#F5CBA7" transparent opacity={0.6} />
             </mesh>
           </group>
         )
@@ -68,11 +69,12 @@ function ShotClock({ x, z }: { x: number; z: number }) {
       <Text
         ref={clockRef}
         position={[0, 6.2, 0.06]}
-        fontSize={0.28}
+        fontSize={0.22}
         color="#FF3D3D"
         anchorX="center"
         anchorY="middle"
         font={undefined}
+        depthOffset={-1}
       >
         24
       </Text>
@@ -118,8 +120,8 @@ export default function ArenaExtras() {
     <>
       <CrowdRow zPos={9.5}  side={1}  />
       <CrowdRow zPos={-9.5} side={-1} />
-      <ShotClock x={-13} z={4} />
-      <ShotClock x={13}  z={-4} />
+      <ShotClock x={-10} z={5} />
+      <ShotClock x={10}  z={-5} />
       <CeilingRig />
     </>
   )

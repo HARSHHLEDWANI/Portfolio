@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { createPortal } from 'react-dom';
 import { ZoneName } from '@/lib/cameraPositions';
 import { PROJECTS } from '@/lib/projects';
 import { SKILLS, LEVEL_COLOR } from '@/lib/skills';
@@ -131,6 +132,7 @@ const ZONE_LABELS: Record<string, string> = {
 
 export default function ZonePanel({ zone, open, onClose }: Props) {
   return (
+    <>
     <AnimatePresence>
       {open && zone && zone !== 'DEFAULT' && (
         <motion.div
@@ -154,14 +156,10 @@ export default function ZonePanel({ zone, open, onClose }: Props) {
             overflow: 'hidden',
           }}
         >
-          {/* Header — sticky so it stays visible when content scrolls */}
+          {/* Header — zone label only, × is rendered via portal */}
           <div style={{
-            position: 'sticky',
-            top: 0,
-            zIndex: 100,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
             padding: '16px 20px',
             background: 'rgba(5,8,16,0.98)',
             borderBottom: '1px solid rgba(255,215,0,0.15)',
@@ -176,41 +174,6 @@ export default function ZonePanel({ zone, open, onClose }: Props) {
             }}>
               {ZONE_LABELS[zone] ?? zone}
             </span>
-            <button
-              onClick={onClose}
-              style={{
-                width: '34px',
-                height: '34px',
-                background: 'rgba(255,255,255,0.07)',
-                border: '1px solid rgba(255,255,255,0.18)',
-                borderRadius: '4px',
-                color: '#ffffff',
-                fontSize: '22px',
-                lineHeight: '1',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-                fontFamily: 'monospace',
-                padding: '0',
-                transition: 'all 0.15s',
-              }}
-              onMouseEnter={e => {
-                const b = e.currentTarget;
-                b.style.background = 'rgba(255,50,50,0.3)';
-                b.style.borderColor = 'rgba(255,50,50,0.6)';
-                b.style.color = '#ff5555';
-              }}
-              onMouseLeave={e => {
-                const b = e.currentTarget;
-                b.style.background = 'rgba(255,255,255,0.07)';
-                b.style.borderColor = 'rgba(255,255,255,0.18)';
-                b.style.color = '#ffffff';
-              }}
-            >
-              ×
-            </button>
           </div>
 
           {/* Gold accent line under header */}
@@ -223,5 +186,47 @@ export default function ZonePanel({ zone, open, onClose }: Props) {
         </motion.div>
       )}
     </AnimatePresence>
+
+    {/* Portal × button — rendered into document.body, cannot be clipped by anything */}
+    {typeof window !== 'undefined' && open && zone && zone !== 'DEFAULT' &&
+      createPortal(
+        <button
+          onClick={onClose}
+          style={{
+            position: 'fixed',
+            top: '16px',
+            right: '16px',
+            width: '40px',
+            height: '40px',
+            zIndex: 9999,
+            background: 'rgba(5,8,16,0.9)',
+            border: '1.5px solid rgba(255,255,255,0.25)',
+            borderRadius: '6px',
+            color: '#ffffff',
+            fontSize: '22px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontFamily: 'monospace',
+            lineHeight: '1',
+            backdropFilter: 'blur(8px)',
+            transition: 'all 0.15s',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.background = 'rgba(200,30,30,0.5)';
+            e.currentTarget.style.borderColor = '#ff4444';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = 'rgba(5,8,16,0.9)';
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)';
+          }}
+        >
+          ×
+        </button>,
+        document.body
+      )
+    }
+    </>
   );
 }
