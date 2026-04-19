@@ -9,7 +9,7 @@ import * as THREE from 'three';
 const ZONE_CONFIG: Record<ZoneName, { position: [number,number,number]; args: [number,number,number]; color: string }> = {
   DEFAULT:  { position: [0, 0.5, 0], args: [1, 1, 1], color: '#FFD700' },
   PROJECTS: { position: [-10, 0.5, 0], args: [5, 1, 6], color: '#00FF88' },
-  SKILLS:   { position: [10,  0.5, 0], args: [5, 1, 6], color: '#00CFFF' },
+  SKILLS:   { position: [16,  3.5, 0], args: [3, 7, 2], color: '#00CFFF' },
   ABOUT:    { position: [0,   0.5, 0], args: [5, 1, 5], color: '#FFD700' },
   CONTACT:  { position: [12,  0.5, 4], args: [4, 1, 4], color: '#FFB347' },
 };

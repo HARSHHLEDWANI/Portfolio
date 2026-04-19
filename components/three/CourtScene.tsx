@@ -10,8 +10,8 @@ import Scoreboard from './Scoreboard';
 import CourtLights from './CourtLights';
 import CameraRig from './CameraRig';
 import Particles from './Particles';
-import TechOrbs from './TechOrbs';
 import ArenaExtras from './ArenaExtras';
+import SkillRack from './SkillRack';
 
 interface Props {
   onZoneClick: (zone: ZoneName) => void;
@@ -44,8 +44,12 @@ export default function CourtScene({ onZoneClick }: Props) {
         <ZoneHitbox zone="SKILLS"   onZoneClick={handleZoneClick} />
         <ZoneHitbox zone="ABOUT"    onZoneClick={handleZoneClick} />
         <ZoneHitbox zone="CONTACT"  onZoneClick={handleZoneClick} />
-        <TechOrbs />
         <ArenaExtras />
+        <SkillRack
+          onRackClick={() => {
+            document.querySelector('#skills')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
       </Suspense>
       <CameraRig targetZone={activeZone} />
     </Canvas>

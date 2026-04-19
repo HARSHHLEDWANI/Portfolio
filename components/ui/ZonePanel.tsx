@@ -59,10 +59,10 @@ function PanelContent({ zone, onClose }: { zone: ZoneName; onClose: () => void }
 
   if (zone === 'SKILLS') return (
     <div>
-      <p style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 11, color: '#00CFFF', letterSpacing: '0.12em', marginBottom: 8 }}>3-POINT LINE</p>
+      <p style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 11, color: '#00CFFF', letterSpacing: '0.12em', marginBottom: 8 }}>SKILLS RACK</p>
       <h2 style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: 28, color: '#F0EDE8', marginBottom: 12 }}>My Stack</h2>
       <p style={{ fontFamily: 'var(--font-dm-sans), sans-serif', fontSize: 14, color: '#8892A4', lineHeight: 1.7, marginBottom: 20 }}>
-        Technologies I use to build real systems.
+        Each ball on the rack is a skill I&apos;ve built with real systems. Hover them in the court — click the rack to see everything.
       </p>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         {SKILLS.flatMap(c => c.items).slice(0, 12).map((s) => (
@@ -144,29 +144,52 @@ export default function ZonePanel({ zone, open, onClose }: Props) {
         >
           {/* Close bar */}
           <div style={{
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-            marginBottom: 24, paddingBottom: 16,
-            borderBottom: '1px solid rgba(255,255,255,0.07)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            marginBottom: 24,
+            gap: 12,
           }}>
             <span style={{
               fontFamily: 'var(--font-jetbrains), monospace',
               fontSize: 10, color: '#3D4557', letterSpacing: '0.12em',
+              paddingTop: 8,
             }}>
               HARSH.SYS / {zone}
             </span>
             <button
               onClick={onClose}
               style={{
-                fontFamily: 'var(--font-jetbrains), monospace',
-                fontSize: 13, color: '#F0EDE8',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.12)',
-                padding: '4px 12px',
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                width: '36px',
+                height: '36px',
+                background: 'rgba(255,255,255,0.08)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                borderRadius: '4px',
+                color: '#F0EDE8',
+                fontSize: '18px',
+                fontFamily: 'JetBrains Mono, monospace',
                 cursor: 'pointer',
-                letterSpacing: '0.08em',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                lineHeight: 1,
+                transition: 'background 0.2s, border-color 0.2s',
+                zIndex: 10,
+                flexShrink: 0,
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,61,61,0.2)';
+                (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,61,61,0.5)';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.08)';
+                (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.15)';
               }}
             >
-              ✕ CLOSE
+              ×
             </button>
           </div>
           <PanelContent zone={zone} onClose={onClose} />

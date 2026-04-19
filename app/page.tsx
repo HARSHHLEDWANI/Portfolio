@@ -40,16 +40,6 @@ export default function Home() {
   const handleZoneClick = (zone: ZoneName) => {
     setActiveZone(zone);
     setPanelOpen(true);
-    const sectionMap: Partial<Record<ZoneName, string>> = {
-      PROJECTS: '#projects',
-      SKILLS:   '#skills',
-      ABOUT:    '#about',
-      CONTACT:  '#contact',
-    };
-    setTimeout(() => {
-      const id = sectionMap[zone];
-      if (id) document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
-    }, 2200);
   };
 
   const handlePanelClose = () => {

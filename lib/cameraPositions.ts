@@ -8,8 +8,8 @@ export const CAM = {
     target:   [-6, 0, 0]  as [number, number, number],
   },
   SKILLS: {
-    position: [10, 6, 6]  as [number, number, number],
-    target:   [6,  0, 0]  as [number, number, number],
+    position: [12, 7, 8]  as [number, number, number],
+    target:   [16, 3, 0]  as [number, number, number],
   },
   ABOUT: {
     position: [0, 3, 10]  as [number, number, number],
