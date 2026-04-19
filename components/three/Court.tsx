@@ -1,6 +1,6 @@
 'use client';
 
-import { Line, Text } from '@react-three/drei';
+import { Line, Text, MeshReflectorMaterial } from '@react-three/drei';
 
 function arcPoints(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, segments: number): [number, number, number][] {
   return Array.from({ length: segments }, (_, i) => {
@@ -33,7 +33,19 @@ export default function Court() {
       {/* Floor */}
       <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[28, 15]} />
-        <meshStandardMaterial color="#7B3F00" roughness={0.8} metalness={0.1} />
+        <MeshReflectorMaterial
+          color="#7B3F00"
+          roughness={0.9}
+          metalness={0.1}
+          mirror={0.15}
+          blur={[300, 100]}
+          mixBlur={0.8}
+          mixStrength={0.4}
+          resolution={512}
+          depthScale={1}
+          minDepthThreshold={0.4}
+          maxDepthThreshold={1.4}
+        />
       </mesh>
 
       {/* Wood grain lines */}
