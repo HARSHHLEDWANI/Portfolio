@@ -23,6 +23,22 @@
   --font-display: 'Syne', sans-serif;
   --font-body:    'DM Sans', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;
+
+  /* Short aliases */
+  --bg:     #080B14;
+  --bg2:    #0D1117;
+  --panel:  #111520;
+  --gold:   #FFD700;
+  --green:  #00FF88;
+  --cyan:   #00CFFF;
+  --amber:  #FFB347;
+  --red:    #FF3D3D;
+  --text:   #F0EDE8;
+  --muted:  #8892A4;
+  --dim:    #3D4557;
+  --border: rgba(255,255,255,0.07);
+  --glow-green: rgba(0,255,136,0.15);
+  --glow-cyan:  rgba(0,207,255,0.20);
 }
 
 /* ════════════════════════════════════════════════

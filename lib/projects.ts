@@ -14,7 +14,7 @@ export interface Project {
   image: string;
 }
 
-export const projects: Project[] = [
+export const PROJECTS: Project[] = [
   {
     id: 'secureflow',
     number: '01',
@@ -94,3 +94,5 @@ export const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=320&h=200&fit=crop',
   },
 ];
+
+export const projects = PROJECTS;

@@ -27,7 +27,9 @@
     "three": "r168"
   },
   "devDependencies": {
+    "@gsap/react": "^2.1.2",
     "@types/canvas-confetti": "^1.9.0",
+    "@types/three": "^0.184.0",
     "autoprefixer": "^10.4.17",
     "eslint": "^8.51.0",
     "postcss": "^8.4.35",
