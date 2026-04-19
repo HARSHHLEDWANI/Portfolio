@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { PROJECTS } from '@/lib/projects';
+import { ProjectRowSkeleton } from '@/components/ui/Skeleton';
 
 const STATUS_COLOR: Record<string, string> = {
   LIVE: '#00CFFF', COMPLETED: '#00FF88', BUILDING: '#FFB347',
@@ -12,6 +13,12 @@ const STATUS_COLOR: Record<string, string> = {
 export default function ProjectsSection() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 600);
+    return () => clearTimeout(t);
+  }, []);
 
   const toggle = (id: string) => setOpenId(p => p === id ? null : id);
 
@@ -35,7 +42,11 @@ export default function ProjectsSection() {
         </motion.div>
 
         {/* List */}
-        {PROJECTS.map((project, idx) => {
+        {!loaded ? (
+          <>{[1,2,3,4,5,6].map(i => <ProjectRowSkeleton key={i} />)}</>
+        ) : null}
+
+        {loaded && PROJECTS.map((project, idx) => {
           const isOpen = openId === project.id;
           const isHovered = hoveredId === project.id;
 
@@ -190,6 +201,7 @@ export default function ProjectsSection() {
           .panel-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
+
     </section>
   );
 }

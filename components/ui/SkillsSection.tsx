@@ -1,7 +1,9 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SKILLS, LEVEL_FILL, LEVEL_COLOR, Level } from '@/lib/skills';
+import { SkillCardSkeleton, GitHubSkeleton } from '@/components/ui/Skeleton';
 
 const CATEGORY_ACCENT: Record<string, string> = {
   'Languages':      '#FFD700',
@@ -86,6 +88,13 @@ function StatCard({ cat, items }: { cat: string; items: { name: string; level: L
 }
 
 export default function SkillsSection() {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 800);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <section id="skills" style={{ padding: '120px 0', background: '#0D1117' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 80px' }} className="skills-inner">
@@ -107,29 +116,43 @@ export default function SkillsSection() {
         </motion.div>
 
         {/* Stat card grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          style={{
+        {!loaded ? (
+          <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: 16,
             marginBottom: 64,
-          }}
-          className="skills-cards"
-        >
-          {SKILLS.map((cat) => (
-            <StatCard key={cat.cat} cat={cat.cat} items={cat.items} />
-          ))}
-        </motion.div>
+          }} className="skills-cards">
+            {[1,2,3,4,5,6].map(i => <SkillCardSkeleton key={i} />)}
+          </div>
+        ) : (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: 16,
+              marginBottom: 64,
+            }}
+            className="skills-cards"
+          >
+            {SKILLS.map((cat) => (
+              <StatCard key={cat.cat} cat={cat.cat} items={cat.items} />
+            ))}
+          </motion.div>
+        )}
 
         {/* GitHub activity */}
         <motion.div
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.6, delay: 0.2 }}
         >
+          {!loaded ? (
+            <GitHubSkeleton />
+          ) : (<>
           <p style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 11, color: '#3D4557', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 20 }}>
             COMMIT ACTIVITY
           </p>
@@ -183,6 +206,7 @@ export default function SkillsSection() {
               Neuro-Adaptive AI Learning System
             </span>
           </div>
+          </>)}
         </motion.div>
       </div>
 

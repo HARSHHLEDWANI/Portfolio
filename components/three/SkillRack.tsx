@@ -5,22 +5,24 @@ import { Text, Html } from '@react-three/drei'
 import * as THREE from 'three'
 
 const SKILLS_ON_RACK = [
-  { name: 'React',      level: 'ADVANCED',   color: '#61DAFB' },
-  { name: 'Python',     level: 'ADVANCED',   color: '#00FF88' },
-  { name: 'Next.js',   level: 'ADVANCED',   color: '#FFFFFF' },
-  { name: 'FastAPI',    level: 'PROFICIENT', color: '#009688' },
-  { name: 'TensorFlow', level: 'PROFICIENT', color: '#FF8C00' },
-  { name: 'Node.js',   level: 'ADVANCED',   color: '#84BA64' },
-  { name: 'PostgreSQL', level: 'PROFICIENT', color: '#336791' },
-  { name: 'MongoDB',   level: 'PROFICIENT', color: '#4DB33D' },
-  { name: 'ML/AI',     level: 'PROFICIENT', color: '#FF3D3D' },
-  { name: 'TypeScript', level: 'ADVANCED',   color: '#3178C6' },
-  { name: 'Docker',    level: 'LEARNING',   color: '#2496ED' },
-  { name: 'AWS',       level: 'LEARNING',   color: '#FFB347' },
+  { name: 'React',        level: 'ADVANCED',   color: '#61DAFB', cat: 'Frontend'  },
+  { name: 'Python',       level: 'ADVANCED',   color: '#FFD43B', cat: 'Language'  },
+  { name: 'Next.js',     level: 'ADVANCED',   color: '#FFFFFF', cat: 'Frontend'  },
+  { name: 'FastAPI',      level: 'PROFICIENT', color: '#009688', cat: 'Backend'   },
+  { name: 'TensorFlow',   level: 'PROFICIENT', color: '#FF8C00', cat: 'ML & AI'   },
+  { name: 'Node.js',     level: 'ADVANCED',   color: '#84BA64', cat: 'Backend'   },
+  { name: 'PostgreSQL',   level: 'PROFICIENT', color: '#336791', cat: 'Database'  },
+  { name: 'MongoDB',     level: 'PROFICIENT', color: '#4DB33D', cat: 'Database'  },
+  { name: 'TypeScript',   level: 'ADVANCED',   color: '#3178C6', cat: 'Language'  },
+  { name: 'Scikit-learn', level: 'PROFICIENT', color: '#F7931E', cat: 'ML & AI'   },
+  { name: 'AWS',          level: 'LEARNING',   color: '#FF9900', cat: 'Cloud'     },
+  { name: 'Docker',       level: 'LEARNING',   color: '#2496ED', cat: 'DevOps'    },
 ]
 
+type SkillEntry = typeof SKILLS_ON_RACK[0]
+
 interface SkillBallProps {
-  skill: typeof SKILLS_ON_RACK[0]
+  skill: SkillEntry
   position: [number, number, number]
   onHover: (name: string | null) => void
   isHovered: boolean
@@ -55,11 +57,11 @@ function SkillBall({ skill, position, onHover, isHovered }: SkillBallProps) {
     >
       <sphereGeometry args={[0.22, 24, 24]} />
       <meshStandardMaterial
-        color={isHovered ? skill.color : '#FF6B35'}
-        emissive={isHovered ? skill.color : '#FF3300'}
-        emissiveIntensity={isHovered ? 0.8 : 0.15}
-        roughness={0.6}
-        metalness={0.1}
+        color={skill.color}
+        emissive={skill.color}
+        emissiveIntensity={isHovered ? 1.0 : 0.25}
+        roughness={isHovered ? 0.3 : 0.65}
+        metalness={isHovered ? 0.3 : 0.05}
       />
 
       {/* Basketball seam — vertical ring */}
@@ -73,6 +75,14 @@ function SkillBall({ skill, position, onHover, isHovered }: SkillBallProps) {
         <meshBasicMaterial color="#000" transparent opacity={0.6} />
       </mesh>
 
+      {/* Per-ball colour glow */}
+      <pointLight
+        color={skill.color}
+        intensity={isHovered ? 8 : 1.5}
+        distance={2}
+        position={[0, 0, 0]}
+      />
+
       {/* Hover tooltip */}
       {isHovered && (
         <Html
@@ -83,27 +93,39 @@ function SkillBall({ skill, position, onHover, isHovered }: SkillBallProps) {
           style={{ pointerEvents: 'none' }}
         >
           <div style={{
-            background: 'rgba(8,11,20,0.95)',
-            border: `1px solid ${skill.color}`,
-            borderRadius: '4px',
-            padding: '6px 12px',
+            background: 'rgba(8,11,20,0.97)',
+            border: `1px solid ${skill.color}55`,
+            borderTop: `2px solid ${skill.color}`,
+            borderRadius: '0 0 4px 4px',
+            padding: '8px 14px',
             whiteSpace: 'nowrap',
             textAlign: 'center',
+            boxShadow: `0 4px 20px ${skill.color}30`,
           }}>
             <div style={{
               fontFamily: 'Syne, sans-serif',
-              fontSize: '13px',
+              fontSize: '14px',
               fontWeight: 700,
               color: skill.color,
+              marginBottom: '3px',
             }}>
               {skill.name}
             </div>
             <div style={{
               fontFamily: 'JetBrains Mono, monospace',
               fontSize: '9px',
-              color: 'rgba(255,255,255,0.5)',
-              marginTop: '2px',
+              color: 'rgba(255,255,255,0.4)',
+              letterSpacing: '0.1em',
+              marginBottom: '2px',
+            }}>
+              {skill.cat.toUpperCase()}
+            </div>
+            <div style={{
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '9px',
+              color: skill.color,
               letterSpacing: '0.08em',
+              opacity: 0.8,
             }}>
               {skill.level}
             </div>

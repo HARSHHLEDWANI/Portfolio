@@ -22,3 +22,22 @@ export const CAM = {
 } as const;
 
 export type ZoneName = keyof typeof CAM;
+
+export const ZONE_NUDGES = {
+  PROJECTS: {
+    position: [-4, 16, 13] as [number, number, number],
+    target:   [-4,  0,  0] as [number, number, number],
+  },
+  SKILLS: {
+    position: [6, 16, 13] as [number, number, number],
+    target:   [6,  0,  0] as [number, number, number],
+  },
+  ABOUT: {
+    position: [0, 16, 13] as [number, number, number],
+    target:   [0,  0,  0] as [number, number, number],
+  },
+  CONTACT: {
+    position: [4, 16, 13] as [number, number, number],
+    target:   [4,  0,  0] as [number, number, number],
+  },
+} as const;

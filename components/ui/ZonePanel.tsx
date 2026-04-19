@@ -122,77 +122,95 @@ function PanelContent({ zone, onClose }: { zone: ZoneName; onClose: () => void }
   return null;
 }
 
+const ZONE_LABELS: Record<string, string> = {
+  PROJECTS: 'THE PAINT',
+  SKILLS:   'SKILLS RACK',
+  ABOUT:    'CENTRE COURT',
+  CONTACT:  'THE BENCH',
+};
+
 export default function ZonePanel({ zone, open, onClose }: Props) {
   return (
     <AnimatePresence>
       {open && zone && zone !== 'DEFAULT' && (
         <motion.div
-          initial={{ x: 400, opacity: 0 }}
+          initial={{ x: 440, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          exit={{ x: 400, opacity: 0 }}
+          exit={{ x: 440, opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            position: 'absolute', right: 0, top: 0, height: '100%',
-            width: 'min(420px, 90vw)',
-            background: 'rgba(8,11,20,0.92)',
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            height: '100%',
+            width: 'min(440px, 90vw)',
+            background: 'rgba(8,11,20,0.95)',
             backdropFilter: 'blur(20px)',
             borderLeft: '1px solid rgba(255,255,255,0.07)',
-            padding: '32px 28px',
-            overflowY: 'auto',
-            zIndex: 20,
+            display: 'flex',
+            flexDirection: 'column',
+            zIndex: 50,
+            overflow: 'hidden',
           }}
         >
-          {/* Close bar */}
+          {/* Header — always rendered first, never clipped */}
           <div style={{
             display: 'flex',
+            alignItems: 'center',
             justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            marginBottom: 24,
-            gap: 12,
+            padding: '20px 24px 16px 24px',
+            borderBottom: '1px solid rgba(255,255,255,0.06)',
+            flexShrink: 0,
           }}>
             <span style={{
-              fontFamily: 'var(--font-jetbrains), monospace',
-              fontSize: 10, color: '#3D4557', letterSpacing: '0.12em',
-              paddingTop: 8,
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '10px',
+              color: '#FFD700',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
             }}>
-              HARSH.SYS / {zone}
+              {ZONE_LABELS[zone] ?? zone}
             </span>
             <button
               onClick={onClose}
               style={{
-                position: 'absolute',
-                top: '20px',
-                right: '20px',
-                width: '36px',
-                height: '36px',
-                background: 'rgba(255,255,255,0.08)',
-                border: '1px solid rgba(255,255,255,0.15)',
+                width: '32px',
+                height: '32px',
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.12)',
                 borderRadius: '4px',
                 color: '#F0EDE8',
-                fontSize: '18px',
-                fontFamily: 'JetBrains Mono, monospace',
+                fontSize: '16px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                lineHeight: 1,
-                transition: 'background 0.2s, border-color 0.2s',
-                zIndex: 10,
                 flexShrink: 0,
+                fontFamily: 'monospace',
+                lineHeight: 1,
+                transition: 'all 0.15s',
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,61,61,0.2)';
-                (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,61,61,0.5)';
+                const b = e.currentTarget;
+                b.style.background = 'rgba(255,61,61,0.25)';
+                b.style.borderColor = 'rgba(255,61,61,0.5)';
+                b.style.color = '#FF3D3D';
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.08)';
-                (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.15)';
+                const b = e.currentTarget;
+                b.style.background = 'rgba(255,255,255,0.06)';
+                b.style.borderColor = 'rgba(255,255,255,0.12)';
+                b.style.color = '#F0EDE8';
               }}
             >
               ×
             </button>
           </div>
-          <PanelContent zone={zone} onClose={onClose} />
+
+          {/* Scrollable content area */}
+          <div style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>
+            <PanelContent zone={zone} onClose={onClose} />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
