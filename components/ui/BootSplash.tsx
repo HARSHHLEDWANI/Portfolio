@@ -22,10 +22,16 @@ export default function BootSplash({ onComplete }: Props) {
   const [visibleCount, setVisibleCount] = useState(0);
   const [exiting, setExiting] = useState(false);
 
+  const dismiss = () => {
+    sessionStorage.setItem('harsh_booted', '1');
+    setExiting(true);
+    setTimeout(() => onComplete(), 600);
+  };
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (sessionStorage.getItem('harsh_booted')) {
-        onComplete();
+        dismiss();
         return;
       }
     }
@@ -36,15 +42,12 @@ export default function BootSplash({ onComplete }: Props) {
     });
 
     timers.push(setTimeout(() => {
-      setExiting(true);
-      setTimeout(() => {
-        sessionStorage.setItem('harsh_booted', '1');
-        onComplete();
-      }, 600);
+      dismiss();
     }, LINES.length * 200 + 500));
 
     return () => timers.forEach(clearTimeout);
-  }, [onComplete]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <AnimatePresence>
@@ -60,10 +63,7 @@ export default function BootSplash({ onComplete }: Props) {
           }}
         >
           <button
-            onClick={() => {
-              sessionStorage.setItem('harsh_booted', '1');
-              onComplete();
-            }}
+            onClick={dismiss}
             style={{
               position: 'fixed', top: 24, right: 24,
               fontFamily: 'var(--font-jetbrains), monospace',

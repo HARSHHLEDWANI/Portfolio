@@ -5,14 +5,14 @@ import { Html } from '@react-three/drei'
 import * as THREE from 'three'
 
 const TECHS = [
-  { name: 'React',      color: '#61DAFB', radius: 7,   speed: 0.3,  yBase: 4.5, phase: 0 },
-  { name: 'Python',     color: '#00FF88', radius: 9,   speed: 0.2,  yBase: 5.5, phase: 1.2 },
-  { name: 'FastAPI',    color: '#009688', radius: 6,   speed: 0.4,  yBase: 3.8, phase: 2.4 },
-  { name: 'Next.js',   color: '#FFFFFF', radius: 10,  speed: 0.18, yBase: 6.0, phase: 0.8 },
-  { name: 'TensorFlow', color: '#FF8C00', radius: 8,   speed: 0.25, yBase: 4.0, phase: 3.5 },
-  { name: 'PostgreSQL', color: '#336791', radius: 11,  speed: 0.15, yBase: 5.0, phase: 1.8 },
-  { name: 'Node.js',   color: '#84BA64', radius: 7.5, speed: 0.35, yBase: 4.2, phase: 4.2 },
-  { name: 'MongoDB',   color: '#4DB33D', radius: 9.5, speed: 0.22, yBase: 5.8, phase: 2.9 },
+  { name: 'React',      color: '#61DAFB', radius: 3.5, speed: 0.3,  yBase: 4.5, phase: 0 },
+  { name: 'Python',     color: '#00FF88', radius: 5.0, speed: 0.2,  yBase: 5.0, phase: 1.2 },
+  { name: 'FastAPI',    color: '#009688', radius: 3.0, speed: 0.4,  yBase: 3.8, phase: 2.4 },
+  { name: 'Next.js',   color: '#FFFFFF', radius: 5.5, speed: 0.18, yBase: 5.5, phase: 0.8 },
+  { name: 'TensorFlow', color: '#FF8C00', radius: 4.0, speed: 0.25, yBase: 4.0, phase: 3.5 },
+  { name: 'PostgreSQL', color: '#336791', radius: 6.0, speed: 0.15, yBase: 4.8, phase: 1.8 },
+  { name: 'Node.js',   color: '#84BA64', radius: 4.5, speed: 0.35, yBase: 4.2, phase: 4.2 },
+  { name: 'MongoDB',   color: '#4DB33D', radius: 5.8, speed: 0.22, yBase: 5.2, phase: 2.9 },
 ]
 
 interface TechOrbProps {
@@ -49,6 +49,7 @@ function TechOrb({ name, color, radius, speed, yBase, phase }: TechOrbProps) {
       <Html
         center
         distanceFactor={12}
+        zIndexRange={[10, 10]}
         style={{
           pointerEvents: 'none',
           whiteSpace: 'nowrap',

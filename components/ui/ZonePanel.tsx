@@ -142,17 +142,33 @@ export default function ZonePanel({ zone, open, onClose }: Props) {
             zIndex: 20,
           }}
         >
-          <button
-            onClick={onClose}
-            style={{
-              position: 'absolute', top: 16, right: 20,
+          {/* Close bar */}
+          <div style={{
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            marginBottom: 24, paddingBottom: 16,
+            borderBottom: '1px solid rgba(255,255,255,0.07)',
+          }}>
+            <span style={{
               fontFamily: 'var(--font-jetbrains), monospace',
-              fontSize: 20, color: '#8892A4',
-              background: 'none', border: 'none', cursor: 'pointer',
-            }}
-          >
-            ×
-          </button>
+              fontSize: 10, color: '#3D4557', letterSpacing: '0.12em',
+            }}>
+              HARSH.SYS / {zone}
+            </span>
+            <button
+              onClick={onClose}
+              style={{
+                fontFamily: 'var(--font-jetbrains), monospace',
+                fontSize: 13, color: '#F0EDE8',
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                padding: '4px 12px',
+                cursor: 'pointer',
+                letterSpacing: '0.08em',
+              }}
+            >
+              ✕ CLOSE
+            </button>
+          </div>
           <PanelContent zone={zone} onClose={onClose} />
         </motion.div>
       )}
