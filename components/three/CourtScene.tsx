@@ -27,7 +27,7 @@ export default function CourtScene({ onZoneClick }: Props) {
 
   return (
     <Canvas
-      camera={{ fov: 50, near: 0.1, far: 200, position: [0, 18, 12] }}
+      camera={{ fov: 45, near: 0.1, far: 200, position: [0, 22, 16] }}
       gl={{ antialias: true, alpha: false }}
       shadows
       dpr={[1, 2]}

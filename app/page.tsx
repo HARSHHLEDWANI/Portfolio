@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ZoneName } from '@/lib/cameraPositions';
 import BootSplash from '@/components/ui/BootSplash';
 import NavBar from '@/components/ui/NavBar';
@@ -36,8 +36,10 @@ export default function Home() {
   const [booted, setBooted] = useState(false);
   const [activeZone, setActiveZone] = useState<ZoneName | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
+  const lastZoneClickTime = useRef(0);
 
   const handleZoneClick = (zone: ZoneName) => {
+    lastZoneClickTime.current = Date.now();
     setActiveZone(zone);
     setPanelOpen(true);
   };
@@ -46,6 +48,14 @@ export default function Home() {
     setPanelOpen(false);
     setActiveZone(null);
   };
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && panelOpen) handlePanelClose();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [panelOpen]);
 
   return (
     <main>
@@ -56,7 +66,14 @@ export default function Home() {
           <NavBar />
 
           {/* 3D Hero — full viewport height */}
-          <section style={{ position: 'relative', width: '100%', height: '100vh' }}>
+          <section
+            style={{ position: 'relative', width: '100%', height: '100vh' }}
+            onClick={() => {
+              if (panelOpen && Date.now() - lastZoneClickTime.current > 200) {
+                handlePanelClose();
+              }
+            }}
+          >
             <CourtScene onZoneClick={handleZoneClick} />
             <HeroOverlay />
             <ZonePanel

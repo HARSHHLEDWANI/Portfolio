@@ -146,20 +146,25 @@ export default function ZonePanel({ zone, open, onClose }: Props) {
             width: 'min(440px, 90vw)',
             background: 'rgba(8,11,20,0.95)',
             backdropFilter: 'blur(20px)',
-            borderLeft: '1px solid rgba(255,255,255,0.07)',
+            borderLeft: '1px solid rgba(255,215,0,0.12)',
+            boxShadow: '-20px 0 60px rgba(0,0,0,0.8)',
             display: 'flex',
             flexDirection: 'column',
             zIndex: 50,
             overflow: 'hidden',
           }}
         >
-          {/* Header — always rendered first, never clipped */}
+          {/* Header — sticky so it stays visible when content scrolls */}
           <div style={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 100,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '20px 24px 16px 24px',
-            borderBottom: '1px solid rgba(255,255,255,0.06)',
+            padding: '16px 20px',
+            background: 'rgba(5,8,16,0.98)',
+            borderBottom: '1px solid rgba(255,215,0,0.15)',
             flexShrink: 0,
           }}>
             <span style={{
@@ -174,38 +179,42 @@ export default function ZonePanel({ zone, open, onClose }: Props) {
             <button
               onClick={onClose}
               style={{
-                width: '32px',
-                height: '32px',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.12)',
+                width: '34px',
+                height: '34px',
+                background: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.18)',
                 borderRadius: '4px',
-                color: '#F0EDE8',
-                fontSize: '16px',
+                color: '#ffffff',
+                fontSize: '22px',
+                lineHeight: '1',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0,
                 fontFamily: 'monospace',
-                lineHeight: 1,
+                padding: '0',
                 transition: 'all 0.15s',
               }}
               onMouseEnter={e => {
                 const b = e.currentTarget;
-                b.style.background = 'rgba(255,61,61,0.25)';
-                b.style.borderColor = 'rgba(255,61,61,0.5)';
-                b.style.color = '#FF3D3D';
+                b.style.background = 'rgba(255,50,50,0.3)';
+                b.style.borderColor = 'rgba(255,50,50,0.6)';
+                b.style.color = '#ff5555';
               }}
               onMouseLeave={e => {
                 const b = e.currentTarget;
-                b.style.background = 'rgba(255,255,255,0.06)';
-                b.style.borderColor = 'rgba(255,255,255,0.12)';
-                b.style.color = '#F0EDE8';
+                b.style.background = 'rgba(255,255,255,0.07)';
+                b.style.borderColor = 'rgba(255,255,255,0.18)';
+                b.style.color = '#ffffff';
               }}
             >
               ×
             </button>
           </div>
+
+          {/* Gold accent line under header */}
+          <div style={{ height: 2, background: 'linear-gradient(90deg, #FFD700, transparent)', flexShrink: 0 }} />
 
           {/* Scrollable content area */}
           <div style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>

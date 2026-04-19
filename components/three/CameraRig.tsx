@@ -63,9 +63,10 @@ export default function CameraRig({ targetZone }: Props) {
       ref={controlsRef}
       enableDamping
       dampingFactor={0.05}
-      minDistance={5}
-      maxDistance={35}
-      maxPolarAngle={Math.PI / 2.2}
+      minDistance={8}
+      maxDistance={40}
+      maxPolarAngle={Math.PI / 2.1}
+      minPolarAngle={0.2}
       makeDefault
     />
   );

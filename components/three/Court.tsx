@@ -124,8 +124,8 @@ export default function Court() {
       <Text
         position={[0, 0.02, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
-        fontSize={2.5}
-        color="rgba(255,215,0,0.1)"
+        fontSize={2.0}
+        color="rgba(255,215,0,0.07)"
         anchorX="center"
         anchorY="middle"
       >

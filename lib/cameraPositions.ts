@@ -1,6 +1,6 @@
 export const CAM = {
   DEFAULT: {
-    position: [0, 18, 12] as [number, number, number],
+    position: [0, 22, 16] as [number, number, number],
     target:   [0, 0,  0]  as [number, number, number],
   },
   PROJECTS: {

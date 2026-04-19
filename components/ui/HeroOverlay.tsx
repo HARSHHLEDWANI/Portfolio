@@ -33,24 +33,41 @@ function StatusPill() {
 }
 
 function TypingRole() {
+  const [displayed, setDisplayed] = useState('');
   const [roleIdx, setRoleIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
+  const [blink, setBlink] = useState(true);
 
   useEffect(() => {
-    const role = ROLES[roleIdx];
-    if (!deleting && charIdx < role.length) {
-      const t = setTimeout(() => setCharIdx(c => c + 1), 60);
-      return () => clearTimeout(t);
+    const id = setInterval(() => setBlink(b => !b), 530);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const current = ROLES[roleIdx];
+
+    if (!deleting && charIdx <= current.length) {
+      const id = setTimeout(() => {
+        setDisplayed(current.slice(0, charIdx));
+        setCharIdx(c => c + 1);
+      }, 65);
+      return () => clearTimeout(id);
     }
-    if (!deleting && charIdx === role.length) {
-      const t = setTimeout(() => setDeleting(true), 2000);
-      return () => clearTimeout(t);
+
+    if (!deleting && charIdx > current.length) {
+      const id = setTimeout(() => setDeleting(true), 2000);
+      return () => clearTimeout(id);
     }
+
     if (deleting && charIdx > 0) {
-      const t = setTimeout(() => setCharIdx(c => c - 1), 30);
-      return () => clearTimeout(t);
+      const id = setTimeout(() => {
+        setDisplayed(current.slice(0, charIdx - 1));
+        setCharIdx(c => c - 1);
+      }, 35);
+      return () => clearTimeout(id);
     }
+
     if (deleting && charIdx === 0) {
       setDeleting(false);
       setRoleIdx(r => (r + 1) % ROLES.length);
@@ -58,13 +75,14 @@ function TypingRole() {
   }, [charIdx, deleting, roleIdx]);
 
   return (
-    <p style={{
+    <div style={{
       fontFamily: 'var(--font-jetbrains), monospace',
       fontSize: 20, color: '#00CFFF', letterSpacing: '0.04em',
+      minHeight: 30, display: 'flex', alignItems: 'center',
     }}>
-      {ROLES[roleIdx].slice(0, charIdx)}
-      <span className="cursor-blink">|</span>
-    </p>
+      {displayed}
+      <span style={{ opacity: blink ? 1 : 0, marginLeft: 2, color: '#00FF88', transition: 'opacity 0.1s' }}>|</span>
+    </div>
   );
 }
 
@@ -77,24 +95,19 @@ function ShootHint() {
   return (
     <p style={{
       fontFamily: 'var(--font-jetbrains), monospace',
-      fontSize: 10, color: '#3D4557',
-      marginTop: 4,
+      fontSize: 10, color: 'rgba(255,255,255,0.18)',
+      letterSpacing: '0.1em', textTransform: 'uppercase', margin: 0,
       opacity: visible ? 1 : 0,
       transition: 'opacity 0.8s ease',
     }}>
-      CLICK THE PLAYER TO SHOOT 🏀
+      Click the player to shoot 🏀
     </p>
   );
 }
 
 export default function HeroOverlay() {
   return (
-    <div style={{
-      position: 'absolute', inset: 0, zIndex: 10,
-      pointerEvents: 'none',
-      display: 'flex', flexDirection: 'column',
-      justifyContent: 'flex-end', padding: '0 48px 80px',
-    }}>
+    <div style={{ position: 'absolute', inset: 0, zIndex: 10, pointerEvents: 'none' }}>
       {/* Status pill — top centre */}
       <div style={{
         position: 'absolute', top: 72, left: '50%',
@@ -103,12 +116,15 @@ export default function HeroOverlay() {
         <StatusPill />
       </div>
 
-      {/* Bottom-left identity block */}
+      {/* Hero content — bottom left */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        style={{ pointerEvents: 'auto' }}
+        style={{
+          position: 'absolute', bottom: 80, left: 48,
+          maxWidth: 560, pointerEvents: 'auto',
+        }}
       >
         <p style={{
           fontFamily: 'var(--font-jetbrains), monospace',
@@ -164,16 +180,27 @@ export default function HeroOverlay() {
         </div>
       </motion.div>
 
-      {/* Bottom hint */}
+      {/* Bottom hint — bottom centre, gold-tinted, fades in after 3s */}
       <div style={{
-        position: 'absolute', bottom: 24, left: '50%',
-        transform: 'translateX(-50%)', textAlign: 'center', pointerEvents: 'none',
+        position: 'absolute', bottom: 20, left: '50%',
+        transform: 'translateX(-50%)',
+        textAlign: 'center', pointerEvents: 'none',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
+        animation: 'fadeInHint 1s ease 3s both',
       }}>
-        <p style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 10, color: '#3D4557' }}>
-          CLICK GLOWING ZONES TO EXPLORE
+        <p style={{
+          fontFamily: 'var(--font-jetbrains), monospace', fontSize: 10,
+          color: 'rgba(255,215,0,0.5)', letterSpacing: '0.12em', margin: 0,
+          textTransform: 'uppercase',
+        }}>
+          ↑ Click glowing zones to explore
         </p>
-        <p style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 10, color: '#3D4557', marginTop: 4 }}>
-          DRAG TO ORBIT · SCROLL TO ZOOM
+        <p style={{
+          fontFamily: 'var(--font-jetbrains), monospace', fontSize: 10,
+          color: 'rgba(255,255,255,0.2)', letterSpacing: '0.1em', margin: 0,
+          textTransform: 'uppercase',
+        }}>
+          Drag to orbit · Scroll to zoom
         </p>
         <ShootHint />
       </div>
