@@ -11,6 +11,7 @@ import StatsBar from '@/components/ui/StatsBar';
 import ProjectsSection from '@/components/ui/ProjectsSection';
 import SkillsSection from '@/components/ui/SkillsSection';
 import AboutSection from '@/components/ui/AboutSection';
+import ImpactSection from '@/components/ui/ImpactSection';
 import ContactSection from '@/components/ui/ContactSection';
 import FloatingTerminal from '@/components/ui/FloatingTerminal';
 import SectionDivider from '@/components/ui/SectionDivider';
@@ -91,6 +92,8 @@ export default function Home() {
           <SkillsSection />
           <SectionDivider />
           <AboutSection />
+          <SectionDivider />
+          <ImpactSection />
           <SectionDivider />
           <ContactSection />
 

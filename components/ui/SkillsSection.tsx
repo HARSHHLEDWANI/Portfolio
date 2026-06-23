@@ -11,7 +11,8 @@ const CATEGORY_ACCENT: Record<string, string> = {
   'Backend':        '#00FF88',
   'Databases':      '#FF8C00',
   'ML & AI':        '#FF3D3D',
-  'Cloud & Security': '#7B61FF',
+  'Cloud & DevOps': '#7B61FF',
+  'Core CS':        '#00FF88',
 };
 
 const containerVariants = {

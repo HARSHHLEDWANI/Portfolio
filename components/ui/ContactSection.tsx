@@ -15,6 +15,7 @@ const LINKS = [
   { label: 'GITHUB →', sub: 'HARSHHLEDWANI', href: 'https://github.com/HARSHHLEDWANI' },
   { label: 'LINKEDIN →', sub: 'harsh-ledwani', href: 'https://www.linkedin.com/in/harsh-ledwani-097571219/' },
   { label: 'EMAIL →', sub: 'ledwani830@gmail.com', href: 'mailto:ledwani830@gmail.com' },
+  { label: 'PHONE →', sub: '+91 85108 24637', href: 'tel:+918510824637' },
 ];
 
 const inputStyle: React.CSSProperties = {
@@ -91,7 +92,7 @@ export default function ContactSection() {
           style={{ marginBottom: 64 }}
         >
           <p style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 11, color: '#3D4557', letterSpacing: '0.1em', marginBottom: 12 }}>
-            05 / CONTACT
+            06 / CONTACT
           </p>
           <h2 style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: 64, fontWeight: 800, color: '#F0EDE8', margin: '0 0 16px', lineHeight: 1 }} className="contact-heading">
             Let&apos;s Build.
